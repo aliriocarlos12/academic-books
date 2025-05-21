@@ -5,275 +5,242 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MindDigital - Biblioteca Online</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* Para animação do expandir */
-    .hidden {
-      display: none;
+    /* Scroll suave para âncoras */
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
-  <!-- Header -->
-  <header class="bg-blue-900 text-white shadow sticky top-0 z-50">
-    <div
-      class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"
-    >
-      <div class="flex items-center gap-3">
-        <img
-          src="https://i.imgur.com/yoPb9yY.png"
-          alt="MindDigital Logo"
-          class="h-12 w-12 object-contain"
-        />
-        <h1 class="text-3xl font-bold tracking-wide">MindDigital</h1>
-      </div>
-      <nav class="space-x-8 text-lg font-semibold hidden md:flex">
-        <button
-          class="hover:underline focus:outline-none"
-          data-section="categorias"
-        >
-          Categoria
-        </button>
-        <button
-          class="hover:underline focus:outline-none"
-          data-section="livros"
-        >
-          Livros
-        </button>
-        <button
-          class="hover:underline focus:outline-none"
-          data-section="como-funciona"
-        >
-          Como Funciona
-        </button>
-        <button class="hover:underline focus:outline-none" data-section="apoio">
-          Apoio
-        </button>
-      </nav>
-      <!-- Mobile menu button -->
-      <div class="md:hidden">
-        <button
-          id="btn-mobile-menu"
-          aria-label="Abrir menu"
-          class="focus:outline-none"
-        >
-          <i class="fas fa-bars text-2xl"></i>
-        </button>
-      </div>
-    </div>
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
-    <!-- Mobile Menu -->
-    <div
-      id="mobile-menu"
-      class="hidden bg-blue-800 text-white flex flex-col space-y-3 px-6 py-4"
-    >
-      <button
-        class="hover:underline text-left font-semibold"
-        data-section="categorias"
-      >
-        Categoria
-      </button>
-      <button
-        class="hover:underline text-left font-semibold"
-        data-section="livros"
-      >
-        Livros
-      </button>
-      <button
-        class="hover:underline text-left font-semibold"
-        data-section="como-funciona"
-      >
-        Como Funciona
-      </button>
-      <button class="hover:underline text-left font-semibold" data-section="apoio">
-        Apoio
-      </button>
+  <!-- Cabeçalho -->
+  <header class="bg-blue-900 text-white shadow p-4 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Book_icon_2.svg" alt="MindDigital Logo" class="h-10 w-10" />
+        <h1 class="text-2xl font-bold select-none">MindDigital</h1>
+      </div>
+      <nav class="space-x-6 text-lg">
+        <a href="#inicio" class="hover:underline">Início</a>
+        <a href="#categorias" class="hover:underline">Categorias</a>
+        <a href="#como-funciona" class="hover:underline">Como Funciona</a>
+        <a href="#apoio" class="hover:underline">Apoio</a>
+        <a href="#contacto" class="hover:underline">Contacto</a>
+      </nav>
     </div>
   </header>
 
-  <main class="flex-grow max-w-7xl mx-auto px-4 py-8 space-y-12">
-    <!-- CATEGORIAS -->
-    <section id="categorias-section" class="section">
-      <h2 class="text-3xl font-bold mb-6 border-b-4 border-blue-700 inline-block">
-        Categorias de Formação
-      </h2>
+  <!-- Intro com citação -->
+  <section id="inicio" class="bg-white p-10 max-w-5xl mx-auto mt-6 rounded-xl shadow text-center">
+    <blockquote class="text-xl italic font-semibold text-gray-700 max-w-3xl mx-auto mb-6">
+      "O verdadeiro legado de um homem não está na riqueza que acumulou, mas nas ideias que acederam outras almas e nos sonhos que despertou no mundo."
+    </blockquote>
+    <p class="text-gray-900 font-bold mb-4">— Alírio Carlos</p>
+    <p class="text-gray-600 max-w-xl mx-auto">
+      Bem-vindo à MindDigital, sua biblioteca digital gratuita. Aqui você encontrará livros organizados por categorias e cursos, com downloads reais e acesso fácil para todos os estudantes da África e do mundo.
+    </p>
+  </section>
 
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        id="categorias-container"
-      >
-        <!-- Categoria Licenciatura -->
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg cursor-pointer">
-          <h3
-            class="text-xl font-semibold mb-4 flex justify-between items-center"
-            data-toggle="licenciatura"
-          >
-            Licenciatura
-            <i class="fas fa-chevron-down transition-transform duration-300"></i>
-          </h3>
-          <ul
-            class="space-y-2 hidden"
-            id="licenciatura"
-            aria-expanded="false"
-          >
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="contabilidade"
-            >
-              Contabilidade
-            </li>
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="gestao"
-            >
-              Gestão
-            </li>
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="informatica"
-            >
-              Informática
-            </li>
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="outros-licenciatura"
-            >
-              Outros
-            </li>
-          </ul>
-        </div>
+  <!-- Categorias com seleção -->
+  <section id="categorias" class="max-w-7xl mx-auto mt-10 px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center text-blue-900">Categorias de Formação</h2>
 
-        <!-- Categoria Ensino Secundário -->
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg cursor-pointer">
-          <h3
-            class="text-xl font-semibold mb-4 flex justify-between items-center"
-            data-toggle="ensino-secundario"
-          >
-            Ensino Secundário
-            <i class="fas fa-chevron-down transition-transform duration-300"></i>
-          </h3>
-          <ul
-            class="space-y-2 hidden"
-            id="ensino-secundario"
-            aria-expanded="false"
-          >
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="matematica-secundario"
-            >
-              Matemática
-            </li>
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="portugues-secundario"
-            >
-              Português
-            </li>
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="fisica-secundario"
-            >
-              Física
-            </li>
-          </ul>
-        </div>
+    <div class="grid md:grid-cols-2 gap-10">
+      <!-- Lista de categorias -->
+      <nav aria-label="Categorias de formação" class="space-y-4 border-r pr-6">
+        <button class="categoria-btn text-left w-full text-lg font-semibold text-blue-800 hover:text-blue-600" data-cat="licenciatura">Licenciatura</button>
+        <button class="categoria-btn text-left w-full text-lg font-semibold text-blue-800 hover:text-blue-600" data-cat="secundario">Ensino Secundário</button>
+        <button class="categoria-btn text-left w-full text-lg font-semibold text-blue-800 hover:text-blue-600" data-cat="primario">Ensino Primário</button>
+        <button class="categoria-btn text-left w-full text-lg font-semibold text-blue-800 hover:text-blue-600" data-cat="obras">Obras Literárias</button>
+      </nav>
 
-        <!-- Categoria Ensino Primário -->
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg cursor-pointer">
-          <h3
-            class="text-xl font-semibold mb-4 flex justify-between items-center"
-            data-toggle="ensino-primario"
-          >
-            Ensino Primário
-            <i class="fas fa-chevron-down transition-transform duration-300"></i>
-          </h3>
-          <ul
-            class="space-y-2 hidden"
-            id="ensino-primario"
-            aria-expanded="false"
-          >
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="matematica-primario"
-            >
-              Matemática
-            </li>
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="portugues-primario"
-            >
-              Português
-            </li>
-          </ul>
-        </div>
-
-        <!-- Categoria Obras Literárias -->
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg cursor-pointer">
-          <h3
-            class="text-xl font-semibold mb-4 flex justify-between items-center"
-            data-toggle="obras-literarias"
-          >
-            Obras Literárias
-            <i class="fas fa-chevron-down transition-transform duration-300"></i>
-          </h3>
-          <ul
-            class="space-y-2 hidden"
-            id="obras-literarias"
-            aria-expanded="false"
-          >
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="literatura-africana"
-            >
-              Literatura Africana
-            </li>
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="literatura-brasil"
-            >
-              Literatura Brasil
-            </li>
-            <li
-              class="cursor-pointer hover:text-blue-700"
-              data-subcategory="literatura-portugal"
-            >
-              Literatura Portugal
-            </li>
-          </ul>
-        </div>
+      <!-- Área de livros -->
+      <div id="livros-area" class="bg-white rounded-xl shadow p-6 max-h-[600px] overflow-y-auto">
+        <p class="text-gray-500 italic select-none">Selecione uma categoria para ver os livros.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- LIVROS -->
-    <section id="livros-section" class="section hidden">
-      <h2
-        class="text-3xl font-bold mb-6 border-b-4 border-blue-700 inline-block"
-      >
-        Livros Disponíveis
-      </h2>
+  <!-- Como Funciona -->
+  <section id="como-funciona" class="max-w-4xl mx-auto mt-16 p-6 bg-white rounded-xl shadow">
+    <h2 class="text-3xl font-bold text-blue-900 mb-4">Como Funciona</h2>
+    <p>
+      Navegue pelas categorias do site para encontrar livros específicos de seu interesse.
+      As categorias estão divididas em níveis de ensino e áreas de estudo. Clique na categoria desejada para ver os livros disponíveis.
+      Para baixar um livro, clique no título e um link de download direto aparecerá.
+      Todos os livros aqui são de domínio público e de acesso gratuito, para apoiar sua educação e formação.
+    </p>
+  </section>
 
-      <div id="livros-container" class="space-y-6"></div>
-    </section>
+  <!-- Apoio -->
+  <section id="apoio" class="max-w-4xl mx-auto mt-16 p-6 bg-blue-50 rounded-xl shadow text-center">
+    <h2 class="text-3xl font-bold text-blue-900 mb-6">Apoie o Projeto</h2>
+    <p class="mb-6 text-gray-700">
+      Sua contribuição ajuda a manter a MindDigital gratuita e acessível para todos.
+      Você pode apoiar via PayPal ou M-Pesa usando os botões abaixo.
+    </p>
+    <div class="flex justify-center gap-8">
+      <a href="#" target="_blank" class="bg-yellow-500 hover:bg-yellow-600 transition text-white px-6 py-3 rounded-full flex items-center gap-3 shadow">
+        <i class="fab fa-paypal fa-lg"></i> PayPal
+      </a>
+      <a href="#" target="_blank" class="bg-green-600 hover:bg-green-700 transition text-white px-6 py-3 rounded-full flex items-center gap-3 shadow">
+        <i class="fas fa-mobile-alt fa-lg"></i> M-Pesa
+      </a>
+    </div>
+  </section>
 
-    <!-- COMO FUNCIONA -->
-    <section id="como-funciona-section" class="section hidden max-w-3xl mx-auto">
-      <h2
-        class="text-3xl font-bold mb-6 border-b-4 border-blue-700 inline-block"
-      >
-        Como Funciona
-      </h2>
-      <p class="text-lg leading-relaxed">
-        O MindDigital é uma biblioteca digital focada em disponibilizar livros
-        gratuitos para estudantes de toda África e de países lusófonos. Você
-        pode navegar pelas categorias de formação, escolher livros por curso
-        e país, e baixar diretamente pelo link disponível para cada obra.
-        Nosso objetivo é facilitar o acesso ao conhecimento e ajudar você no
-        seu aprendizado.
-      </p>
-    </section>
+  <!-- Contacto -->
+  <footer id="contacto" class="bg-blue-900 text-white mt-auto p-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="font-bold text-lg mb-3">MindDigital</h3>
+        <p>Biblioteca digital para estudantes de toda África.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-3">Links Rápidos</h3>
+        <ul>
+          <li><a href="#categorias" class="hover:underline">Categorias</a></li>
+          <li><a href="#como-funciona" class="hover:underline">Como Funciona</a></li>
+          <li><a href="#apoio" class="hover:underline">Apoio</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-3">Contacto</h3>
+        <p>Telefone: <a href="tel:+258877465556" class="hover:underline">+258 877 465 556</a></p>
+        <p>Email: minddigital@biblioteca.org</p>
+        <p>Maputo, Moçambique</p>
+      </div>
+    </div>
+    <p class="text-center mt-6 text-sm select-none">© 2025 MindDigital. Todos os direitos reservados.</p>
+  </footer>
 
-    <!-- APOIO -->
-    <section id="apoio-section" class="section hidden max-w-3xl
+  <script>
+    // Dados dos livros organizados
+    const livrosData = {
+      licenciatura: {
+        contabilidade: [
+          {
+            titulo: "Contabilidade Geral - Livro 1",
+            autor: "Autor Desconhecido",
+            pais: "Moçambique",
+            link: "https://www.gutenberg.org/ebooks/23015.pdf", // Exemplo domínio público
+            img: "https://covers.openlibrary.org/b/id/8228691-L.jpg"
+          },
+          {
+            titulo: "Princípios de Contabilidade",
+            autor: "Autor Clássico",
+            pais: "Brasil",
+            link: "https://www.gutenberg.org/ebooks/37510.pdf",
+            img: "https://covers.openlibrary.org/b/id/8228781-L.jpg"
+          }
+        ],
+        gestao: [
+          {
+            titulo: "Gestão Empresarial Básica",
+            autor: "Autor Desconhecido",
+            pais: "Portugal",
+            link: "https://www.gutenberg.org/ebooks/1661.pdf",
+            img: "https://covers.openlibrary.org/b/id/8231856-L.jpg"
+          }
+        ],
+        informatica: [
+          {
+            titulo: "Introdução à Computação",
+            autor: "Autor Clássico",
+            pais: "Brasil",
+            link: "https://www.gutenberg.org/ebooks/6807.pdf",
+            img: "https://covers.openlibrary.org/b/id/8235476-L.jpg"
+          }
+        ]
+      },
+      secundario: {
+        matematica: [
+          {
+            titulo: "Matemática Fundamental",
+            autor: "Autor Desconhecido",
+            pais: "Moçambique",
+            link: "https://www.gutenberg.org/ebooks/12345.pdf",
+            img: "https://covers.openlibrary.org/b/id/8230212-L.jpg"
+          }
+        ],
+        portugues: [
+          {
+            titulo: "Gramática Portuguesa",
+            autor: "Autor Clássico",
+            pais: "Portugal",
+            link: "https://www.gutenberg.org/ebooks/18330.pdf",
+            img: "https://covers.openlibrary.org/b/id/8230223-L.jpg"
+          }
+        ]
+      },
+      primario: {
+        alfabetizacao: [
+          {
+            titulo: "ABC para Crianças",
+            autor: "Autor Desconhecido",
+            pais: "Brasil",
+            link: "https://www.gutenberg.org/ebooks/1900.pdf",
+            img: "https://covers.openlibrary.org/b/id/8239001-L.jpg"
+          }
+        ]
+      },
+      obras: {
+        literatura_africana: [
+          {
+            titulo: "Os Lusíadas",
+            autor: "Luís de Camões",
+            pais: "Portugal",
+            link: "https://www.gutenberg.org/ebooks/28585.pdf",
+            img: "https://covers.openlibrary.org/b/id/8231043-L.jpg"
+          }
+        ],
+        obras_gerais: [
+          {
+            titulo: "Dom Quixote",
+            autor: "Miguel de Cervantes",
+            pais: "Espanha",
+            link: "https://www.gutenberg.org/ebooks/996.pdf",
+            img: "https://covers.openlibrary.org/b/id/8232154-L.jpg"
+          }
+        ]
+      }
+    };
+
+    // Mostrar categorias de subnível e depois livros
+    const livrosArea = document.getElementById('livros-area');
+    let categoriaSelecionada = null;
+
+    // Cria botão para subcategorias
+    function criarBotaoSubcategoria(subcatKey, subcatNome) {
+      const btn = document.createElement('button');
+      btn.textContent = subcatNome;
+      btn.className = "block w-full text-left px-4 py-2 mb-2 bg-blue-100 rounded hover:bg-blue-200 font-semibold cursor-pointer";
+      btn.dataset.subcat = subcatKey;
+      btn.addEventListener('click', () => mostrarLivros(categoriaSelecionada, subcatKey));
+      return btn;
+    }
+
+    // Mostrar subcategorias
+    function mostrarSubcategorias(cat) {
+      livrosArea.innerHTML = '';
+      categoriaSelecionada = cat;
+      const subcats = livrosData[cat];
+      if (!subcats) {
+        livrosArea.innerHTML = '<p class="text-red-500 font-semibold">Categoria sem livros cadastrados.</p>';
+        return;
+      }
+      const titulo = document.createElement('h3');
+      titulo.className = 'text-xl font-bold mb-4 text-blue-800 capitalize';
+      titulo.textContent = 'Selecione a subcategoria';
+      livrosArea.appendChild(titulo);
+
+      for (const key in subcats) {
+        // Exibir nome bonito substituindo underscore por espaço e capitalizando
+        const nomeBonito = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        livrosArea.appendChild(criarBotaoSubcategoria(key, nomeBonito));
+      }
+    }
+
+    // Mostrar livros na subcategoria
