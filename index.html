@@ -2,146 +2,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindDigital - Biblioteca Acadêmica</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f0f4f8;
-      color: #333;
-    }
-    header {
-      background: #002b5c;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-      font-size: 24px;
-    }
-    .painel {
-      background: #cce6ff;
-      padding: 10px;
-      font-size: 14px;
-      text-align: center;
-    }
-    .search-box {
-      margin: 20px auto;
-      max-width: 600px;
-      text-align: center;
-    }
-    .search-box input {
-      padding: 12px;
-      width: 80%;
-      max-width: 400px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    .categorias {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .categoria {
-      background: white;
-      padding: 15px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .categoria h2 {
-      color: #002b5c;
-      font-size: 18px;
-    }
-    .categoria ul {
-      list-style: none;
-      padding: 0;
-    }
-    .categoria li {
-      margin-bottom: 8px;
-    }
-    .categoria a {
-      text-decoration: none;
-      color: #0077cc;
-    }
-    .doacoes {
-      text-align: center;
-      margin: 30px 0;
-    }
-    .doacoes h3 {
-      color: #002b5c;
-    }
-    .rodape {
-      background: #002b5c;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-    }
-    .rodape a {
-      color: #aaddff;
-      text-decoration: none;
-    }
-  </style>
+  <title>MindDigital - Biblioteca Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-<body>
-  <header>
-    MindDigital - Biblioteca Acadêmica
-  </header>  <div class="painel">
-    "A leitura é a chave que abre as portas do conhecimento." — Compartilhe esta plataforma educativa.
-  </div>  <div class="search-box">
-    <input type="text" id="pesquisa" placeholder="Pesquisar livros por nome, autor ou classe...">
-  </div>  <div class="categorias" id="livros">
-    <div class="categoria">
-      <h2>Moçambique - Ensino Primário</h2>
-      <ul>
-        <li>Português 3ª Classe — <a href="#">Download</a></li>
-        <li>Matemática 4ª Classe — <a href="#">Download</a></li>
-        <!-- Adicione mais -->
-      </ul>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Cabeçalho -->
+  <header class="bg-blue-800 text-white shadow p-4 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">MindDigital</h1>
+      <nav class="space-x-4">
+        <a href="#categorias" class="hover:underline">Categorias</a>
+        <a href="#livros" class="hover:underline">Livros</a>
+        <a href="#apoio" class="hover:underline">Apoie</a>
+      </nav>
     </div>
-    <div class="categoria">
-      <h2>Moçambique - Ensino Secundário</h2>
-      <ul>
-        <li>Física 10ª Classe — <a href="#">Download</a></li>
-        <li>História 12ª Classe — <a href="#">Download</a></li>
-      </ul>
+  </header>  <!-- Categorias -->  <section id="categorias" class="py-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-2xl font-semibold mb-6">Categorias</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white shadow rounded-xl p-4">Contabilidade</div>
+        <div class="bg-white shadow rounded-xl p-4">Direito</div>
+        <div class="bg-white shadow rounded-xl p-4">Informática</div>
+        <div class="bg-white shadow rounded-xl p-4">Educação</div>
+        <div class="bg-white shadow rounded-xl p-4">Engenharia</div>
+        <div class="bg-white shadow rounded-xl p-4">Gestão</div>
+        <div class="bg-white shadow rounded-xl p-4">Psicologia</div>
+        <div class="bg-white shadow rounded-xl p-4">Literatura Africana</div>
+      </div>
     </div>
-    <div class="categoria">
-      <h2>Angola - Ensino Geral</h2>
-      <ul>
-        <li>Educação Moral 7ª Classe — <a href="#">Download</a></li>
-        <li>Química 11ª Classe — <a href="#">Download</a></li>
-      </ul>
+  </section>  <!-- Livros -->  <section id="livros" class="py-10 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-2xl font-semibold mb-6">Mais de 100 Livros por País e Classe</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Exemplo de livros (repetir para simular 100 livros) -->
+        <div class="bg-gray-50 rounded-xl shadow p-4">
+          <h3 class="font-bold">Contabilidade Geral - Moçambique</h3>
+          <p class="text-sm text-gray-600">Classe: 12ª | País: Moçambique</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl shadow p-4">
+          <h3 class="font-bold">Direito Constitucional - Angola</h3>
+          <p class="text-sm text-gray-600">Curso: Direito | País: Angola</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl shadow p-4">
+          <h3 class="font-bold">Introdução à Gestão - Brasil</h3>
+          <p class="text-sm text-gray-600">Curso: Administração | País: Brasil</p>
+        </div>
+        <!-- Copiar e variar acima até 100 livros reais -->
+      </div>
     </div>
-    <div class="categoria">
-      <h2>Literatura Clássica</h2>
-      <ul>
-        <li>O Príncipe — Maquiavel — <a href="#">Download</a></li>
-        <li>Dom Quixote — Cervantes — <a href="#">Download</a></li>
-      </ul>
+  </section>  <!-- Apoio -->  <section id="apoio" class="py-10 bg-blue-50">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-semibold mb-6">Apoie o projeto</h2>
+      <p class="mb-4">Sua contribuição ajuda a manter esta biblioteca gratuita e acessível para todos.</p>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="bg-yellow-500 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow hover:bg-yellow-600">
+          <i class="fab fa-paypal"></i> PayPal
+        </a>
+        <a href="#" class="bg-green-500 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow hover:bg-green-600">
+          <i class="fas fa-mobile-alt"></i> M-Pesa
+        </a>
+      </div>
     </div>
-    <div class="categoria">
-      <h2>Desenvolvimento Pessoal</h2>
-      <ul>
-        <li>Como Vencer na Vida — <a href="#">Download</a></li>
-        <li>Psicologia Positiva — <a href="#">Download</a></li>
-      </ul>
+  </section>  <!-- Rodapé -->  <footer class="bg-blue-900 text-white py-8 mt-10">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h4 class="font-bold mb-2">MindDigital</h4>
+        <p>Biblioteca digital para estudantes de toda África.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-2">Links Úteis</h4>
+        <ul>
+          <li><a href="#categorias" class="hover:underline">Categorias</a></li>
+          <li><a href="#livros" class="hover:underline">Livros</a></li>
+          <li><a href="#apoio" class="hover:underline">Apoie</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-2">Contacto</h4>
+        <p>Email: minddigital@biblioteca.org</p>
+        <p>Maputo, Moçambique</p>
+      </div>
     </div>
-  </div>  <div class="doacoes">
-    <h3>Deseja apoiar este projeto?</h3>
-    <p>Envie via M-Pesa, Emola, ou Pix para o número: <strong>877465556</strong></p>
-  </div>  <div class="rodape">
-    <p>© 2025 MindDigital. Livros disponíveis são de domínio público ou autorizados para distribuição.</p>
-    <p>Fundador: <a href="https://github.com/aliriocarlos12">Alirio Carlos</a></p>
-  </div>  <script>
-    document.getElementById('pesquisa').addEventListener('input', function () {
-      const termo = this.value.toLowerCase();
-      const livros = document.querySelectorAll('#livros li');
-      livros.forEach(li => {
-        li.style.display = li.textContent.toLowerCase().includes(termo) ? '' : 'none';
-      });
-    });
-  </script></body>
-      </html>
+    <div class="text-center text-sm mt-6">© 2025 MindDigital. Todos os direitos reservados.</div>
+  </footer>
+</body>
+          </html>
