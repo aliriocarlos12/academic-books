@@ -10,239 +10,270 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
   <style>
-    a.book-card {
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    a.book-card:hover {
-      transform: translateY(-4px);
-      background-color: #e0e7ff;
+    /* Para animação do expandir */
+    .hidden {
+      display: none;
     }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <!-- Cabeçalho -->
-  <header
-    class="bg-blue-800 text-white shadow p-4 sticky top-0 z-50"
-  >
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-2">
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-blue-900 text-white shadow sticky top-0 z-50">
+    <div
+      class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"
+    >
+      <div class="flex items-center gap-3">
         <img
-          src="/mnt/data/minddigital-logo.png"
+          src="https://i.imgur.com/yoPb9yY.png"
           alt="MindDigital Logo"
-          class="h-10"
+          class="h-12 w-12 object-contain"
         />
-        <h1 class="text-2xl font-bold">MindDigital</h1>
+        <h1 class="text-3xl font-bold tracking-wide">MindDigital</h1>
       </div>
-      <nav class="space-x-4">
-        <a href="#categorias" class="hover:underline">Categorias</a>
-        <a href="#livros" class="hover:underline">Livros</a>
-        <a href="#apoio" class="hover:underline">Apoie</a>
+      <nav class="space-x-8 text-lg font-semibold hidden md:flex">
+        <button
+          class="hover:underline focus:outline-none"
+          data-section="categorias"
+        >
+          Categoria
+        </button>
+        <button
+          class="hover:underline focus:outline-none"
+          data-section="livros"
+        >
+          Livros
+        </button>
+        <button
+          class="hover:underline focus:outline-none"
+          data-section="como-funciona"
+        >
+          Como Funciona
+        </button>
+        <button class="hover:underline focus:outline-none" data-section="apoio">
+          Apoio
+        </button>
       </nav>
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button
+          id="btn-mobile-menu"
+          aria-label="Abrir menu"
+          class="focus:outline-none"
+        >
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="hidden bg-blue-800 text-white flex flex-col space-y-3 px-6 py-4"
+    >
+      <button
+        class="hover:underline text-left font-semibold"
+        data-section="categorias"
+      >
+        Categoria
+      </button>
+      <button
+        class="hover:underline text-left font-semibold"
+        data-section="livros"
+      >
+        Livros
+      </button>
+      <button
+        class="hover:underline text-left font-semibold"
+        data-section="como-funciona"
+      >
+        Como Funciona
+      </button>
+      <button class="hover:underline text-left font-semibold" data-section="apoio">
+        Apoio
+      </button>
     </div>
   </header>
 
-  <!-- Barra de Pesquisa -->
-  <section class="py-6 bg-white shadow">
-    <form
-      onsubmit="searchBooks(); return false;"
-      class="max-w-3xl mx-auto px-4 flex items-center gap-2"
-    >
-      <input
-        type="text"
-        id="searchInput"
-        class="w-full p-2 border rounded-lg"
-        placeholder="Pesquisar livros por nome ou categoria..."
-      />
-      <button
-        type="submit"
-        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+  <main class="flex-grow max-w-7xl mx-auto px-4 py-8 space-y-12">
+    <!-- CATEGORIAS -->
+    <section id="categorias-section" class="section">
+      <h2 class="text-3xl font-bold mb-6 border-b-4 border-blue-700 inline-block">
+        Categorias de Formação
+      </h2>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        id="categorias-container"
       >
-        <i class="fas fa-search"></i>
-      </button>
-    </form>
-  </section>
-
-  <!-- Categorias Principais -->
-  <section id="categorias" class="py-10">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-2xl font-semibold mb-6">Categorias de Formação</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white shadow rounded-xl p-4">
-          <h3 class="text-xl font-bold mb-2">Ensino Secundário</h3>
-          <ul class="list-disc list-inside text-blue-700">
-            <li><a href="#livros-secundario">Livros do Secundário</a></li>
+        <!-- Categoria Licenciatura -->
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg cursor-pointer">
+          <h3
+            class="text-xl font-semibold mb-4 flex justify-between items-center"
+            data-toggle="licenciatura"
+          >
+            Licenciatura
+            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+          </h3>
+          <ul
+            class="space-y-2 hidden"
+            id="licenciatura"
+            aria-expanded="false"
+          >
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="contabilidade"
+            >
+              Contabilidade
+            </li>
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="gestao"
+            >
+              Gestão
+            </li>
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="informatica"
+            >
+              Informática
+            </li>
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="outros-licenciatura"
+            >
+              Outros
+            </li>
           </ul>
         </div>
-        <div class="bg-white shadow rounded-xl p-4">
-          <h3 class="text-xl font-bold mb-2">Licenciatura</h3>
-          <ul class="list-disc list-inside text-blue-700">
-            <li><a href="#contabilidade">Contabilidade</a></li>
-            <li><a href="#economia">Economia</a></li>
-            <li><a href="#informatica">Informática</a></li>
+
+        <!-- Categoria Ensino Secundário -->
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg cursor-pointer">
+          <h3
+            class="text-xl font-semibold mb-4 flex justify-between items-center"
+            data-toggle="ensino-secundario"
+          >
+            Ensino Secundário
+            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+          </h3>
+          <ul
+            class="space-y-2 hidden"
+            id="ensino-secundario"
+            aria-expanded="false"
+          >
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="matematica-secundario"
+            >
+              Matemática
+            </li>
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="portugues-secundario"
+            >
+              Português
+            </li>
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="fisica-secundario"
+            >
+              Física
+            </li>
           </ul>
         </div>
-        <div class="bg-white shadow rounded-xl p-4">
-          <h3 class="text-xl font-bold mb-2">Obras Literárias</h3>
-          <ul class="list-disc list-inside text-blue-700">
-            <li><a href="#literatura">Literatura Africana</a></li>
-            <li><a href="#obras-gerais">Obras Gerais</a></li>
+
+        <!-- Categoria Ensino Primário -->
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg cursor-pointer">
+          <h3
+            class="text-xl font-semibold mb-4 flex justify-between items-center"
+            data-toggle="ensino-primario"
+          >
+            Ensino Primário
+            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+          </h3>
+          <ul
+            class="space-y-2 hidden"
+            id="ensino-primario"
+            aria-expanded="false"
+          >
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="matematica-primario"
+            >
+              Matemática
+            </li>
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="portugues-primario"
+            >
+              Português
+            </li>
+          </ul>
+        </div>
+
+        <!-- Categoria Obras Literárias -->
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg cursor-pointer">
+          <h3
+            class="text-xl font-semibold mb-4 flex justify-between items-center"
+            data-toggle="obras-literarias"
+          >
+            Obras Literárias
+            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+          </h3>
+          <ul
+            class="space-y-2 hidden"
+            id="obras-literarias"
+            aria-expanded="false"
+          >
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="literatura-africana"
+            >
+              Literatura Africana
+            </li>
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="literatura-brasil"
+            >
+              Literatura Brasil
+            </li>
+            <li
+              class="cursor-pointer hover:text-blue-700"
+              data-subcategory="literatura-portugal"
+            >
+              Literatura Portugal
+            </li>
           </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Livros por Categoria -->
-  <section id="livros" class="py-10 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-2xl font-semibold mb-6">Livros Disponíveis</h2>
+    <!-- LIVROS -->
+    <section id="livros-section" class="section hidden">
+      <h2
+        class="text-3xl font-bold mb-6 border-b-4 border-blue-700 inline-block"
+      >
+        Livros Disponíveis
+      </h2>
 
-      <div id="livros-secundario" class="mb-10">
-        <h3 class="text-xl font-bold text-blue-800 mb-4">
-          Ensino Secundário
-        </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <a
-            href="#"
-            class="book-card bg-gray-50 rounded-xl shadow p-4 hover:bg-gray-100 block"
-          >
-            <h4 class="font-bold">Matemática 12ª Classe</h4>
-            <p class="text-sm">Moçambique</p>
-            <button
-              class="mt-2 text-blue-600 hover:underline flex items-center gap-2"
-            >
-              <i class="fas fa-download"></i> Baixar PDF
-            </button>
-          </a>
-        </div>
-      </div>
+      <div id="livros-container" class="space-y-6"></div>
+    </section>
 
-      <div id="contabilidade" class="mb-10">
-        <h3 class="text-xl font-bold text-blue-800 mb-4">
-          Licenciatura - Contabilidade
-        </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <a
-            href="#"
-            class="book-card bg-gray-50 rounded-xl shadow p-4 hover:bg-gray-100 block"
-          >
-            <h4 class="font-bold">Contabilidade Geral</h4>
-            <p class="text-sm">Moçambique</p>
-            <button
-              class="mt-2 text-blue-600 hover:underline flex items-center gap-2"
-            >
-              <i class="fas fa-download"></i> Baixar PDF
-            </button>
-          </a>
-        </div>
-      </div>
-
-      <div id="economia" class="mb-10">
-        <h3 class="text-xl font-bold text-blue-800 mb-4">
-          Licenciatura - Economia
-        </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <a
-            href="#"
-            class="book-card bg-gray-50 rounded-xl shadow p-4 hover:bg-gray-100 block"
-          >
-            <h4 class="font-bold">Microeconomia Básica</h4>
-            <p class="text-sm">Angola</p>
-            <button
-              class="mt-2 text-blue-600 hover:underline flex items-center gap-2"
-            >
-              <i class="fas fa-download"></i> Baixar PDF
-            </button>
-          </a>
-        </div>
-      </div>
-
-      <div id="literatura" class="mb-10">
-        <h3 class="text-xl font-bold text-blue-800 mb-4">
-          Obras Literárias Africanas
-        </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <a
-            href="#"
-            class="book-card bg-gray-50 rounded-xl shadow p-4 hover:bg-gray-100 block"
-          >
-            <h4 class="font-bold">Mayombe - Pepetela</h4>
-            <p class="text-sm">Angola</p>
-            <button
-              class="mt-2 text-blue-600 hover:underline flex items-center gap-2"
-            >
-              <i class="fas fa-download"></i> Baixar PDF
-            </button>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Apoio -->
-  <section id="apoio" class="py-10 bg-blue-50">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-semibold mb-6">Apoie o projeto</h2>
-      <p class="mb-4">
-        Sua contribuição ajuda a manter esta biblioteca gratuita e acessível para
-        todos.
+    <!-- COMO FUNCIONA -->
+    <section id="como-funciona-section" class="section hidden max-w-3xl mx-auto">
+      <h2
+        class="text-3xl font-bold mb-6 border-b-4 border-blue-700 inline-block"
+      >
+        Como Funciona
+      </h2>
+      <p class="text-lg leading-relaxed">
+        O MindDigital é uma biblioteca digital focada em disponibilizar livros
+        gratuitos para estudantes de toda África e de países lusófonos. Você
+        pode navegar pelas categorias de formação, escolher livros por curso
+        e país, e baixar diretamente pelo link disponível para cada obra.
+        Nosso objetivo é facilitar o acesso ao conhecimento e ajudar você no
+        seu aprendizado.
       </p>
-      <div class="flex justify-center space-x-4">
-        <a
-          href="#"
-          class="bg-yellow-500 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow hover:bg-yellow-600"
-        >
-          <i class="fab fa-paypal"></i> PayPal
-        </a>
-        <a
-          href="#"
-          class="bg-green-500 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow hover:bg-green-600"
-        >
-          <i class="fas fa-mobile-alt"></i> M-Pesa
-        </a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Rodapé -->
-  <footer class="bg-blue-900 text-white py-8 mt-10">
-    <div
-      class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8"
-    >
-      <div>
-        <h4 class="font-bold mb-2">MindDigital</h4>
-        <p>Biblioteca digital para estudantes de toda África.</p>
-      </div>
-      <div>
-        <h4 class="font-bold mb-2">Links Úteis</h4>
-        <ul>
-          <li><a href="#categorias" class="hover:underline">Categorias</a></li>
-          <li><a href="#livros" class="hover:underline">Livros</a></li>
-          <li><a href="#apoio" class="hover:underline">Apoie</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold mb-2">Contacto</h4>
-        <p>Email: minddigital@biblioteca.org</p>
-        <p>Maputo, Moçambique</p>
-      </div>
-    </div>
-    <div class="text-center text-sm mt-6">
-      © 2025 MindDigital. Todos os direitos reservados.
-    </div>
-  </footer>
-
-  <script>
-    function searchBooks() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const cards = document.querySelectorAll("#livros a.book-card");
-      cards.forEach((card) => {
-        const title = card.querySelector("h4").textContent.toLowerCase();
-        const category = card.closest("div[id]").id.toLowerCase();
-        const match = title.includes(input) || category.includes(input);
-        card.style.display = match ? "block" : "none";
-      });
-    }
-  </script>
-</body>
-                  </html>
+    <!-- APOIO -->
+    <section id="apoio-section" class="section hidden max-w-3xl
