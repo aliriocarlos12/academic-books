@@ -62,6 +62,153 @@
   </style>
 </head>
 <body>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MindDigital - Biblioteca Acadêmica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    .search-container {
+      text-align: center;
+      margin: 20px;
+    }
+    input[type="text"] {
+      width: 80%;
+      max-width: 500px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .categoria {
+      background-color: #ffffff;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2980b9;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 8px 0;
+    }
+    a {
+      color: #27ae60;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MindDigital - Biblioteca Acadêmica</h1>
+  </header>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Pesquisar por título ou autor..." onkeyup="filtrarLivros()">
+  </div>
+
+  <div class="categoria">
+    <h2>Literatura Clássica</h2>
+    <ul>
+      <li>Dom Quixote – Miguel de Cervantes — <a href="https://www.gutenberg.org/files/9968/9968-pdf.pdf" download>Download PDF</a></li>
+      <li>Memórias Póstumas de Brás Cubas – Machado de Assis — <a href="http://www.dominiopublico.gov.br/download/texto/bv000123.pdf" download>Download PDF</a></li>
+    </ul>
+  </div>
+
+  <div class="categoria">
+    <h2>Ciências Naturais</h2>
+    <ul>
+      <li>A Origem das Espécies – Charles Darwin — <a href="https://www.gutenberg.org/files/1228/1228-pdf.pdf" download>Download PDF</a></li>
+      <li>Relatividade: A Teoria Especial e Geral – Albert Einstein — <a href="https://www.bibliotecapleyades.net/archivos_pdf/Einstein_relativity.pdf" download>Download PDF</a></li>
+    </ul>
+  </div>
+
+  <div class="categoria">
+    <h2>Psicologia</h2>
+    <ul>
+      <li>A Interpretação dos Sonhos – Sigmund Freud — <a href="https://www.dominiopublico.gov.br/download/texto/bv000040.pdf" download>Download PDF</a></li>
+      <li>Psicologia da Educação – Júlio Groppa Aquino — <a href="http://www.ebooksbrasil.org/adobeebook/psicoeduc.pdf" download>Download PDF</a></li>
+    </ul>
+  </div>
+
+  <div class="categoria">
+    <h2>Filosofia</h2>
+    <ul>
+      <li>O Príncipe – Nicolau Maquiavel — <a href="http://www.dominiopublico.gov.br/download/texto/bv000021.pdf" download>Download PDF</a></li>
+      <li>Assim Falou Zaratustra – Friedrich Nietzsche — <a href="https://www.ebooksbrasil.org/adobeebook/zaratustra.pdf" download>Download PDF</a></li>
+    </ul>
+  </div>
+
+  <div class="categoria">
+    <h2>Direito</h2>
+    <ul>
+      <li>Constituição da República de Moçambique (2023) — <a href="https://www.portaldogoverno.gov.mz/por/content/download/4302/34858/version/1/file/Constituicao+da+Republica+de+Mocambique+-+versao+2023.pdf" download>Download PDF</a></li>
+      <li>Noções Básicas de Direito – FGV — <a href="https://www5.fgv.br/fgvonline/Content/documents/noes-de-direito.pdf" download>Download PDF</a></li>
+    </ul>
+  </div>
+
+  <div class="categoria">
+    <h2>Educação e Pedagogia</h2>
+    <ul>
+      <li>Pedagogia do Oprimido – Paulo Freire — <a href="https://www.acervodigital.ufpb.br/jspui/bitstream/123456789/20879/1/PauloFreire_PedagogiaDoOprimido.pdf" download>Download PDF</a></li>
+      <li>Educação e Mudança – Paulo Freire — <a href="http://www.ebooksbrasil.org/adobeebook/educacaomudanca.pdf" download>Download PDF</a></li>
+    </ul>
+  </div>
+
+  <script>
+    function filtrarLivros() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const categorias = document.querySelectorAll('.categoria');
+
+      categorias.forEach(categoria => {
+        let livros = categoria.querySelectorAll('li');
+        let visivel = false;
+
+        livros.forEach(livro => {
+          const texto = livro.textContent.toLowerCase();
+          if (texto.includes(input)) {
+            livro.style.display = '';
+            visivel = true;
+          } else {
+            livro.style.display = 'none';
+          }
+        });
+
+        categoria.style.display = visivel ? '' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>
 
   <header>
     <h1>MindDigital - Biblioteca Acadêmica</h1>
