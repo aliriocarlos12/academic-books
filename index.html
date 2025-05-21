@@ -1,71 +1,214 @@
-<!DOCTYPE html><html lang="pt">
+<!DOCTYPE html>
+<html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MindDigital - Biblioteca Online</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    a.book-card {
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    a.book-card:hover {
+      transform: translateY(-4px);
+      background-color: #e0e7ff;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
   <!-- Cabeçalho -->
-  <header class="bg-blue-800 text-white shadow p-4 sticky top-0 z-50">
+  <header
+    class="bg-blue-800 text-white shadow p-4 sticky top-0 z-50"
+  >
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">MindDigital</h1>
+      <div class="flex items-center gap-2">
+        <img
+          src="/mnt/data/minddigital-logo.png"
+          alt="MindDigital Logo"
+          class="h-10"
+        />
+        <h1 class="text-2xl font-bold">MindDigital</h1>
+      </div>
       <nav class="space-x-4">
         <a href="#categorias" class="hover:underline">Categorias</a>
         <a href="#livros" class="hover:underline">Livros</a>
         <a href="#apoio" class="hover:underline">Apoie</a>
       </nav>
     </div>
-  </header>  <!-- Categorias -->  <section id="categorias" class="py-10">
+  </header>
+
+  <!-- Barra de Pesquisa -->
+  <section class="py-6 bg-white shadow">
+    <form
+      onsubmit="searchBooks(); return false;"
+      class="max-w-3xl mx-auto px-4 flex items-center gap-2"
+    >
+      <input
+        type="text"
+        id="searchInput"
+        class="w-full p-2 border rounded-lg"
+        placeholder="Pesquisar livros por nome ou categoria..."
+      />
+      <button
+        type="submit"
+        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+      >
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+  </section>
+
+  <!-- Categorias Principais -->
+  <section id="categorias" class="py-10">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-2xl font-semibold mb-6">Categorias</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-white shadow rounded-xl p-4">Contabilidade</div>
-        <div class="bg-white shadow rounded-xl p-4">Direito</div>
-        <div class="bg-white shadow rounded-xl p-4">Informática</div>
-        <div class="bg-white shadow rounded-xl p-4">Educação</div>
-        <div class="bg-white shadow rounded-xl p-4">Engenharia</div>
-        <div class="bg-white shadow rounded-xl p-4">Gestão</div>
-        <div class="bg-white shadow rounded-xl p-4">Psicologia</div>
-        <div class="bg-white shadow rounded-xl p-4">Literatura Africana</div>
+      <h2 class="text-2xl font-semibold mb-6">Categorias de Formação</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white shadow rounded-xl p-4">
+          <h3 class="text-xl font-bold mb-2">Ensino Secundário</h3>
+          <ul class="list-disc list-inside text-blue-700">
+            <li><a href="#livros-secundario">Livros do Secundário</a></li>
+          </ul>
+        </div>
+        <div class="bg-white shadow rounded-xl p-4">
+          <h3 class="text-xl font-bold mb-2">Licenciatura</h3>
+          <ul class="list-disc list-inside text-blue-700">
+            <li><a href="#contabilidade">Contabilidade</a></li>
+            <li><a href="#economia">Economia</a></li>
+            <li><a href="#informatica">Informática</a></li>
+          </ul>
+        </div>
+        <div class="bg-white shadow rounded-xl p-4">
+          <h3 class="text-xl font-bold mb-2">Obras Literárias</h3>
+          <ul class="list-disc list-inside text-blue-700">
+            <li><a href="#literatura">Literatura Africana</a></li>
+            <li><a href="#obras-gerais">Obras Gerais</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </section>  <!-- Livros -->  <section id="livros" class="py-10 bg-white">
+  </section>
+
+  <!-- Livros por Categoria -->
+  <section id="livros" class="py-10 bg-white">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-2xl font-semibold mb-6">Mais de 100 Livros por País e Classe</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <!-- Exemplo de livros (repetir para simular 100 livros) -->
-        <div class="bg-gray-50 rounded-xl shadow p-4">
-          <h3 class="font-bold">Contabilidade Geral - Moçambique</h3>
-          <p class="text-sm text-gray-600">Classe: 12ª | País: Moçambique</p>
+      <h2 class="text-2xl font-semibold mb-6">Livros Disponíveis</h2>
+
+      <div id="livros-secundario" class="mb-10">
+        <h3 class="text-xl font-bold text-blue-800 mb-4">
+          Ensino Secundário
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <a
+            href="#"
+            class="book-card bg-gray-50 rounded-xl shadow p-4 hover:bg-gray-100 block"
+          >
+            <h4 class="font-bold">Matemática 12ª Classe</h4>
+            <p class="text-sm">Moçambique</p>
+            <button
+              class="mt-2 text-blue-600 hover:underline flex items-center gap-2"
+            >
+              <i class="fas fa-download"></i> Baixar PDF
+            </button>
+          </a>
         </div>
-        <div class="bg-gray-50 rounded-xl shadow p-4">
-          <h3 class="font-bold">Direito Constitucional - Angola</h3>
-          <p class="text-sm text-gray-600">Curso: Direito | País: Angola</p>
+      </div>
+
+      <div id="contabilidade" class="mb-10">
+        <h3 class="text-xl font-bold text-blue-800 mb-4">
+          Licenciatura - Contabilidade
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <a
+            href="#"
+            class="book-card bg-gray-50 rounded-xl shadow p-4 hover:bg-gray-100 block"
+          >
+            <h4 class="font-bold">Contabilidade Geral</h4>
+            <p class="text-sm">Moçambique</p>
+            <button
+              class="mt-2 text-blue-600 hover:underline flex items-center gap-2"
+            >
+              <i class="fas fa-download"></i> Baixar PDF
+            </button>
+          </a>
         </div>
-        <div class="bg-gray-50 rounded-xl shadow p-4">
-          <h3 class="font-bold">Introdução à Gestão - Brasil</h3>
-          <p class="text-sm text-gray-600">Curso: Administração | País: Brasil</p>
+      </div>
+
+      <div id="economia" class="mb-10">
+        <h3 class="text-xl font-bold text-blue-800 mb-4">
+          Licenciatura - Economia
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <a
+            href="#"
+            class="book-card bg-gray-50 rounded-xl shadow p-4 hover:bg-gray-100 block"
+          >
+            <h4 class="font-bold">Microeconomia Básica</h4>
+            <p class="text-sm">Angola</p>
+            <button
+              class="mt-2 text-blue-600 hover:underline flex items-center gap-2"
+            >
+              <i class="fas fa-download"></i> Baixar PDF
+            </button>
+          </a>
         </div>
-        <!-- Copiar e variar acima até 100 livros reais -->
+      </div>
+
+      <div id="literatura" class="mb-10">
+        <h3 class="text-xl font-bold text-blue-800 mb-4">
+          Obras Literárias Africanas
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <a
+            href="#"
+            class="book-card bg-gray-50 rounded-xl shadow p-4 hover:bg-gray-100 block"
+          >
+            <h4 class="font-bold">Mayombe - Pepetela</h4>
+            <p class="text-sm">Angola</p>
+            <button
+              class="mt-2 text-blue-600 hover:underline flex items-center gap-2"
+            >
+              <i class="fas fa-download"></i> Baixar PDF
+            </button>
+          </a>
+        </div>
       </div>
     </div>
-  </section>  <!-- Apoio -->  <section id="apoio" class="py-10 bg-blue-50">
+  </section>
+
+  <!-- Apoio -->
+  <section id="apoio" class="py-10 bg-blue-50">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-2xl font-semibold mb-6">Apoie o projeto</h2>
-      <p class="mb-4">Sua contribuição ajuda a manter esta biblioteca gratuita e acessível para todos.</p>
+      <p class="mb-4">
+        Sua contribuição ajuda a manter esta biblioteca gratuita e acessível para
+        todos.
+      </p>
       <div class="flex justify-center space-x-4">
-        <a href="#" class="bg-yellow-500 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow hover:bg-yellow-600">
+        <a
+          href="#"
+          class="bg-yellow-500 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow hover:bg-yellow-600"
+        >
           <i class="fab fa-paypal"></i> PayPal
         </a>
-        <a href="#" class="bg-green-500 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow hover:bg-green-600">
+        <a
+          href="#"
+          class="bg-green-500 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow hover:bg-green-600"
+        >
           <i class="fas fa-mobile-alt"></i> M-Pesa
         </a>
       </div>
     </div>
-  </section>  <!-- Rodapé -->  <footer class="bg-blue-900 text-white py-8 mt-10">
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="bg-blue-900 text-white py-8 mt-10">
+    <div
+      class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8"
+    >
       <div>
         <h4 class="font-bold mb-2">MindDigital</h4>
         <p>Biblioteca digital para estudantes de toda África.</p>
@@ -84,7 +227,22 @@
         <p>Maputo, Moçambique</p>
       </div>
     </div>
-    <div class="text-center text-sm mt-6">© 2025 MindDigital. Todos os direitos reservados.</div>
+    <div class="text-center text-sm mt-6">
+      © 2025 MindDigital. Todos os direitos reservados.
+    </div>
   </footer>
+
+  <script>
+    function searchBooks() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll("#livros a.book-card");
+      cards.forEach((card) => {
+        const title = card.querySelector("h4").textContent.toLowerCase();
+        const category = card.closest("div[id]").id.toLowerCase();
+        const match = title.includes(input) || category.includes(input);
+        card.style.display = match ? "block" : "none";
+      });
+    }
+  </script>
 </body>
-          </html>
+                  </html>
