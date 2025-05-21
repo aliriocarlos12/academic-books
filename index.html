@@ -1,103 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>All About School - Biblioteca Digital</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f4f4;
+      background: #f9f9f9;
       margin: 0;
       padding: 0;
     }
     header {
-      background: #2c3e50;
+      background: #2b6cb0;
       color: white;
       padding: 20px;
       text-align: center;
     }
-    main {
+    nav {
+      background: #1a202c;
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
       padding: 20px;
     }
     .category {
+      margin-bottom: 40px;
+    }
+    .category h2 {
+      color: #2b6cb0;
+      border-bottom: 2px solid #2b6cb0;
+      padding-bottom: 5px;
+    }
+    .book {
       background: white;
-      margin-bottom: 15px;
       padding: 15px;
+      margin: 10px 0;
       border-radius: 8px;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
-    h2 {
-      color: #2c3e50;
+    .book a {
+      color: #007acc;
+      text-decoration: none;
     }
     footer {
-      background: #ecf0f1;
       text-align: center;
-      padding: 15px;
+      padding: 20px;
+      background: #e2e8f0;
       margin-top: 30px;
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>All About School</h1>
-    <p>A tua biblioteca digital educativa</p>
+    <p>A tua biblioteca digital organizada por cursos e áreas</p>
   </header>
-  
-<section style="background-color: #f9f9f9; padding: 40px; text-align: center;">
-  <blockquote style="font-size: 1.5rem; font-style: italic; color: #333; max-width: 800px; margin: 0 auto;">
-    “O verdadeiro legado de um homem não está na riqueza que acumulou, mas nas ideias que acenderam outras almas e nos sonhos que despertou no mundo.”
-    <footer style="margin-top: 20px; font-weight: bold; color: #007acc;">— Alirio, fundador do MindDigital</footer>
-  </blockquote>
-</section>
 
-<div class="category">
-  <h2>Informática e Tecnologia</h2>
-  <p>Manuais de programação, software e hardware.</p>
+  <nav>
+    <a href="#contabilidade">Contabilidade</a>
+    <a href="#direito">Direito</a>
+    <a href="#informatica">Informática</a>
+    <a href="#educacao">Educação</a>
+  </nav>
 
-  <div class="book">
-    <h3>Curso de HTML e CSS</h3>
-    <p>Autor: Pedro António</p>
-    <a href="livros/curso-html-css.pdf" download>Baixar PDF</a>
-  </div>
+  <main>
+    <section class="category" id="contabilidade">
+      <h2>Contabilidade</h2>
+      <div class="book">
+        <h3>Contabilidade Financeira I</h3>
+        <p>Autor: João Matavele</p>
+        <a href="#">Baixar PDF</a>
+      </div>
+      <div class="book">
+        <h3>Contabilidade de Gestão</h3>
+        <p>Autor: Ana Luís</p>
+        <a href="#">Baixar PDF</a>
+      </div>
+    </section>
 
-  <div class="book">
-    <h3>Introdução ao JavaScript</h3>
-    <p>Autor: Ana Silva</p>
-    <a href="livros/intro-javascript.pdf" download>Baixar PDF</a>
-  </div>
-</div>
+    <section class="category" id="direito">
+      <h2>Direito</h2>
+      <div class="book">
+        <h3>Introdução ao Direito Moçambicano</h3>
+        <p>Autor: Maria João</p>
+        <a href="#">Baixar PDF</a>
+      </div>
+    </section>
 
-<div class="category">
-  <h2>Matemática</h2>
-  <p>Livros para reforçar cálculo, álgebra e geometria.</p>
+    <section class="category" id="informatica">
+      <h2>Informática</h2>
+      <div class="book">
+        <h3>Redes de Computadores</h3>
+        <p>Autor: Carlos Mário</p>
+        <a href="#">Baixar PDF</a>
+      </div>
+      <div class="book">
+        <h3>Programação em Python</h3>
+        <p>Autor: Mário Pinto</p>
+        <a href="#">Baixar PDF</a>
+      </div>
+    </section>
 
-  <div class="book">
-    <h3>Álgebra Básica</h3>
-    <p>Autor: João Santos</p>
-    <a href="livros/algebra-basica.pdf" download>Baixar PDF</a>
-  </div>
+    <section class="category" id="educacao">
+      <h2>Educação</h2>
+      <div class="book">
+        <h3>Psicologia Educacional</h3>
+        <p>Autor: Elsa Nunes</p>
+        <a href="#">Baixar PDF</a>
+      </div>
+    </section>
+  </main>
 
-  <div class="book">
-    <h3>Cálculo Diferencial</h3>
-    <p>Autor: Maria Costa</p>
-    <a href="livros/calculo-diferencial.pdf" download>Baixar PDF</a>
-  </div>
-</div>
-
-<div class="category">
-  <h2>Contabilidade</h2>
-  <p>Materiais para estudantes de contabilidade e auditoria.</p>
-
-  <div class="book">
-    <h3>Contabilidade Geral</h3>
-    <p>Autor: Carlos Menezes</p>
-    <a href="livros/contabilidade-geral.pdf" download>Baixar PDF</a>
-  </div>
-
-  <div class="book">
-    <h3>Auditoria Básica</h3>
-    <p>Autor: Fernanda Lopes</p>
-    <a href="livros/auditoria-basica.pdf" download>Baixar PDF</a>
-  </div>
-</div>
+  <footer>
+    <p>Criado por Alirio Carlos - &copy; 2025 | MindDigital</p>
+  </footer>
+</body>
+</html>
