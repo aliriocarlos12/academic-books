@@ -3,104 +3,139 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MindDigital - Biblioteca Acadêmica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; }
-    header { background: #003366; color: white; padding: 20px; text-align: center; }
-    .painel { background: #cce0ff; padding: 10px; text-align: center; font-size: 14px; }
-    .search-box { text-align: center; margin: 20px; }
-    input[type="text"] { padding: 10px; width: 80%; max-width: 400px; }
-    .categoria { margin: 20px; padding: 20px; background: white; border-radius: 8px; }
-    .categoria h2 { color: #003366; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 5px 0; }
-    a { color: #0066cc; text-decoration: none; }
-    footer { background: #003366; color: white; text-align: center; padding: 10px; margin-top: 40px; font-size: 12px; }
-    .doacoes { text-align: center; margin: 30px; }
-    .doacoes img { width: 150px; margin: 10px; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+    }
+    header {
+      background: #002b5c;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 24px;
+    }
+    .painel {
+      background: #cce6ff;
+      padding: 10px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .search-box {
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: center;
+    }
+    .search-box input {
+      padding: 12px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .categorias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .categoria {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .categoria h2 {
+      color: #002b5c;
+      font-size: 18px;
+    }
+    .categoria ul {
+      list-style: none;
+      padding: 0;
+    }
+    .categoria li {
+      margin-bottom: 8px;
+    }
+    .categoria a {
+      text-decoration: none;
+      color: #0077cc;
+    }
+    .doacoes {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .doacoes h3 {
+      color: #002b5c;
+    }
+    .rodape {
+      background: #002b5c;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .rodape a {
+      color: #aaddff;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>MindDigital - Biblioteca Acadêmica</h1>
+    MindDigital - Biblioteca Acadêmica
   </header>  <div class="painel">
-    "A leitura é a chave que abre as portas do conhecimento." - Compartilhe esta biblioteca com outros estudantes.
+    "A leitura é a chave que abre as portas do conhecimento." — Compartilhe esta plataforma educativa.
   </div>  <div class="search-box">
-    <input type="text" id="pesquisa" placeholder="Pesquisar livro por nome ou autor...">
-  </div>  <div class="doacoes">
-    <h3>Apoie este projeto:</h3>
-    <p>PayPal | Emola | M-Pesa | Pix</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/2560px-PayPal.svg.png" alt="PayPal">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/M-Pesa_Logo.svg/2560px-M-Pesa_Logo.svg.png" alt="M-Pesa">
-    <!-- Adicione links de doação reais se desejar -->
-  </div>  <div id="livros">
+    <input type="text" id="pesquisa" placeholder="Pesquisar livros por nome, autor ou classe...">
+  </div>  <div class="categorias" id="livros">
     <div class="categoria">
-      <h2>1ª a 12ª Classe - Moçambique</h2>
+      <h2>Moçambique - Ensino Primário</h2>
       <ul>
-        <li>Matemática 7ª Classe — <a href="https://example.com/matematica7.pdf" download>Download PDF</a></li>
-        <li>História 9ª Classe — <a href="https://example.com/historia9.pdf" download>Download PDF</a></li>
-        <!-- Adicione mais links reais -->
+        <li>Português 3ª Classe — <a href="#">Download</a></li>
+        <li>Matemática 4ª Classe — <a href="#">Download</a></li>
+        <!-- Adicione mais -->
       </ul>
-    </div><div class="categoria">
-  <h2>1ª a 12ª Classe - Angola</h2>
-  <ul>
-    <li>Ciências Físicas 10ª Classe — <a href="https://example.com/fisica10.pdf" download>Download PDF</a></li>
-  </ul>
-</div>
-
-<div class="categoria">
-  <h2>Literatura Clássica</h2>
-  <ul>
-    <li>Dom Quixote — Miguel de Cervantes — <a href="https://www.gutenberg.org/files/9968/9968-pdf.pdf" download>Download PDF</a></li>
-    <li>O Príncipe — Maquiavel — <a href="https://www.dominiopublico.gov.br/download/texto/bv000123.pdf" download>Download PDF</a></li>
-  </ul>
-</div>
-
-<div class="categoria">
-  <h2>Ciências Naturais</h2>
-  <ul>
-    <li>Biologia Básica — <a href="https://example.com/biologia_basica.pdf" download>Download PDF</a></li>
-  </ul>
-</div>
-
-<div class="categoria">
-  <h2>Psicologia</h2>
-  <ul>
-    <li>Introdução à Psicologia — <a href="https://example.com/intro_psico.pdf" download>Download PDF</a></li>
-  </ul>
-</div>
-
-<div class="categoria">
-  <h2>Filosofia</h2>
-  <ul>
-    <li>A República — Platão — <a href="https://www.gutenberg.org/files/1497/1497-pdf.pdf" download>Download PDF</a></li>
-  </ul>
-</div>
-
-<div class="categoria">
-  <h2>Direito</h2>
-  <ul>
-    <li>Constituição Moçambicana — <a href="https://example.com/constituicao_mz.pdf" download>Download PDF</a></li>
-  </ul>
-</div>
-
-<div class="categoria">
-  <h2>Educação e Pedagogia</h2>
-  <ul>
-    <li>Didática Geral — <a href="https://example.com/didatica_geral.pdf" download>Download PDF</a></li>
-  </ul>
-</div>
-
-<div class="categoria">
-  <h2>Manuais de Desenvolvimento</h2>
-  <ul>
-    <li>Manual de Agricultura Sustentável — <a href="https://example.com/agricultura.pdf" download>Download PDF</a></li>
-  </ul>
-</div>
-
-  </div>  <footer>
-    <p>© 2025 MindDigital. Todos os livros disponíveis são de domínio público ou distribuídos gratuitamente.</p>
-    <p>Saiba mais sobre o fundador: <a href="https://github.com/aliriocarlos12" style="color: lightblue;">Alirio Carlos</a></p>
-  </footer>  <script>
+    </div>
+    <div class="categoria">
+      <h2>Moçambique - Ensino Secundário</h2>
+      <ul>
+        <li>Física 10ª Classe — <a href="#">Download</a></li>
+        <li>História 12ª Classe — <a href="#">Download</a></li>
+      </ul>
+    </div>
+    <div class="categoria">
+      <h2>Angola - Ensino Geral</h2>
+      <ul>
+        <li>Educação Moral 7ª Classe — <a href="#">Download</a></li>
+        <li>Química 11ª Classe — <a href="#">Download</a></li>
+      </ul>
+    </div>
+    <div class="categoria">
+      <h2>Literatura Clássica</h2>
+      <ul>
+        <li>O Príncipe — Maquiavel — <a href="#">Download</a></li>
+        <li>Dom Quixote — Cervantes — <a href="#">Download</a></li>
+      </ul>
+    </div>
+    <div class="categoria">
+      <h2>Desenvolvimento Pessoal</h2>
+      <ul>
+        <li>Como Vencer na Vida — <a href="#">Download</a></li>
+        <li>Psicologia Positiva — <a href="#">Download</a></li>
+      </ul>
+    </div>
+  </div>  <div class="doacoes">
+    <h3>Deseja apoiar este projeto?</h3>
+    <p>Envie via M-Pesa, Emola, ou Pix para o número: <strong>877465556</strong></p>
+  </div>  <div class="rodape">
+    <p>© 2025 MindDigital. Livros disponíveis são de domínio público ou autorizados para distribuição.</p>
+    <p>Fundador: <a href="https://github.com/aliriocarlos12">Alirio Carlos</a></p>
+  </div>  <script>
     document.getElementById('pesquisa').addEventListener('input', function () {
       const termo = this.value.toLowerCase();
       const livros = document.querySelectorAll('#livros li');
@@ -109,4 +144,4 @@
       });
     });
   </script></body>
-  </html>
+      </html>
