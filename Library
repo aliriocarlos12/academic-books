@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Biblioteca Digital - Livros para Download</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+    h1, h2 { color: #2c3e50; }
+    .categoria { margin-bottom: 40px; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 8px 0; }
+    a { text-decoration: none; color: #2980b9; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Biblioteca Digital</h1>
+
+  <div class="categoria">
+    <h2>Literatura Clássica</h2>
+    <ul>
+      <li>
+        <strong>Dom Quixote</strong> - Miguel de Cervantes
+        <br />
+        <a href="https://www.gutenberg.org/ebooks/9968.epub.images" target="_blank" download="Dom_Quixote.pdf">Download PDF</a>
+      </li>
+      <li>
+        <strong>Os Lusíadas</strong> - Luís de Camões
+        <br />
+        <a href="https://www.gutenberg.org/files/11155/11155-pdf.pdf" target="_blank" download="Os_Lusiadas.pdf">Download PDF</a>
+      </li>
+      <li>
+        <strong>Memórias Póstumas de Brás Cubas</strong> - Machado de Assis
+        <br />
+        <a href="http://www.dominiopublico.gov.br/download/texto/bv000123.pdf" target="_blank" download="Bras_Cubas.pdf">Download PDF</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="categoria">
+    <h2>Ciência</h2>
+    <ul>
+      <li>
+        <strong>Origem das Espécies</strong> - Charles Darwin
+        <br />
+        <a href="https://www.gutenberg.org/files/1228/1228-pdf.pdf" target="_blank" download="Origem_das_Especies.pdf">Download PDF</a>
+      </li>
+      <li>
+        <strong>Relatividade: A Teoria Especial e Geral</strong> - Albert Einstein
+        <br />
+        <a href="https://www.bibliotecapleyades.net/archivos_pdf/Einstein_relativity.pdf" target="_blank" download="Relatividade_Einstein.pdf">Download PDF</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="categoria">
+    <h2>Educação</h2>
+    <ul>
+      <li>
+        <strong>Pedagogia do Oprimido</strong> - Paulo Freire
+        <br />
+        <a href="https://www.nodo50.org/alternativas/cgi-bin/Koha/opac-detail.pl?biblionumber=2558" target="_blank">Link para leitura/download</a>
+      </li>
+      <li>
+        <strong>Manual de Gramática</strong> - Clóvis de Azevedo
+        <br />
+        <a href="https://www.dominiopublico.gov.br/download/texto/bv000095.pdf" target="_blank" download="Manual_Gramatica.pdf">Download PDF</a>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>
