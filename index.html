@@ -3,428 +3,412 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MindDigital - Biblioteca Digital</title>
+<title>MindSite - Biblioteca Digital</title>
 <style>
   /* Reset básico */
-  * {
-    box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #e6f0ff;
-    color: #222;
-  }
-  header {
-    background: #0052cc;
-    color: white;
-    padding: 1em 2em;
-    display: flex;
-    align-items: center;
-    gap: 1em;
-  }
-  header img {
-    height: 40px;
-  }
-  header h1 {
-    margin: 0;
-    font-weight: 700;
-    font-size: 1.8em;
-    letter-spacing: 1.5px;
-    user-select: none;
-  }
-  /* Citação giratória */
-  #quote-container {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    border: 3px solid #0052cc;
-    padding: 20px;
-    font-style: italic;
-    font-size: 0.95em;
-    text-align: center;
-    color: #003d99;
-    animation: spin 20s linear infinite;
-    background: #cce0ff;
-    user-select: none;
-  }
-  @keyframes spin {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
-  }
-  main {
-    max-width: 1100px;
-    margin: 2em auto 4em;
-    padding: 0 1em;
-  }
-  /* Painel categorias */
-  #categories {
-    display: flex;
-    gap: 1em;
-    flex-wrap: wrap;
-    margin-bottom: 2em;
-  }
-  .category-card {
-    flex: 1 1 200px;
-    background: white;
-    padding: 1em;
-    border-radius: 8px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-    cursor: pointer;
-    transition: background 0.3s ease;
-    text-align: center;
-    font-weight: 700;
-    color: #0040cc;
-  }
-  .category-card:hover {
-    background: #cce0ff;
-  }
-
-  /* Subcategoria e livros */
-  #subcategory-section {
-    margin-top: 1em;
-  }
-  #subcategory-list {
-    display: flex;
-    gap: 1em;
-    flex-wrap: wrap;
-  }
-  .subcategory-card {
-    flex: 1 1 200px;
-    background: #f0f8ff;
-    padding: 0.8em;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    cursor: pointer;
-    color: #003366;
-    font-weight: 600;
-    text-align: center;
-  }
-  .subcategory-card:hover {
-    background: #b3d1ff;
-  }
-  #books-section {
-    margin-top: 1em;
-  }
-  #books-list {
-    display: flex;
-    gap: 1em;
-    flex-wrap: wrap;
-  }
-  .book-card {
-    flex: 1 1 150px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.2s ease;
-  }
-  .book-card:hover {
-    transform: scale(1.05);
-  }
-  .book-cover {
-    width: 100%;
-    height: 210px;
-    object-fit: cover;
-    border-bottom: 1px solid #ccc;
-  }
-  .book-title {
-    font-size: 1em;
-    padding: 0.5em 0.3em 0.2em;
-    font-weight: 700;
-    color: #004080;
-  }
-  .download-link {
-    display: block;
-    margin-bottom: 0.8em;
-    font-weight: 600;
-    color: #0073e6;
-    text-decoration: none;
-  }
-  .download-link:hover {
-    text-decoration: underline;
-  }
-
-  /* Pesquisa */
-  #search-section {
-    margin: 2em 0;
-    text-align: center;
-  }
-  #search-input {
-    width: 80%;
-    max-width: 400px;
-    padding: 0.6em 1em;
-    border: 2px solid #0052cc;
-    border-radius: 30px 0 0 30px;
-    font-size: 1em;
-  }
-  #search-button {
-    padding: 0.6em 1.5em;
-    border: 2px solid #0052cc;
-    border-left: none;
-    background: #0052cc;
-    color: white;
-    font-weight: 700;
-    border-radius: 0 30px 30px 0;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  #search-button:hover {
-    background: #003d99;
-  }
-  #search-results {
-    margin-top: 1em;
-    text-align: left;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #search-results p {
-    font-style: italic;
-    color: #555;
-  }
-
-  /* Como funciona */
-  #how-it-works {
-    background: #cce0ff;
-    padding: 1.5em 2em;
-    margin: 3em auto;
-    max-width: 900px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
-  }
-  #how-it-works h2 {
-    text-align: center;
-    color: #003366;
-    margin-bottom: 1em;
-  }
-  #how-it-works p {
-    font-size: 1.05em;
-    line-height: 1.5;
-    color: #00294d;
-  }
-
-  /* Apoio */
-  #support {
-    background: #f0f8ff;
-    max-width: 700px;
-    margin: 3em auto 5em;
-    border-radius: 12px;
-    padding: 1.5em 2em;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-    text-align: center;
-  }
-  #support h2 {
-    color: #0052cc;
-    margin-bottom: 1em;
-  }
-  #support p {
-    font-size: 1.1em;
-    margin-bottom: 1.5em;
-    color: #004080;
-  }
-  #support a {
-    text-decoration: none;
-    font-weight: 700;
-    color: white;
-    background: #0052cc;
-    padding: 0.6em 1.5em;
-    border-radius: 40px;
-    margin: 0 10px;
-    display: inline-block;
-    transition: background 0.3s ease;
-  }
-  #support a:hover {
-    background: #003d99;
-  }
-
-  /* Bot simples */
-  #bot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #0052cc;
-    color: white;
-    width: 320px;
-    max-width: 90vw;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    font-family: Arial, sans-serif;
+    color: #0d1a66;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
-  #bot-header {
-    background: #003d99;
-    padding: 0.8em;
-    font-weight: 700;
-    cursor: pointer;
-    user-select: none;
-  }
-  #bot-messages {
-    flex-grow: 1;
-    padding: 0.7em;
-    background: #cce0ff;
-    overflow-y: auto;
-    height: 200px;
-  }
-  #bot-input-section {
-    display: flex;
-    border-top: 1px solid #0073e6;
-  }
-  #bot-input {
-    flex-grow: 1;
-    border: none;
-    padding: 0.7em 1em;
-    font-size: 1em;
-    border-radius: 0 0 0 10px;
-  }
-  #bot-send {
-    background: #0073e6;
-    border: none;
+  header {
+    background-color: #264d99;
+    padding: 1rem 2rem;
     color: white;
-    padding: 0 1em;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  header img#logo {
+    height: 40px;
+    width: 40px;
+  }
+  header h1 {
     font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+  .container {
+    flex: 1;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: white;
+  }
+  nav {
+    width: 280px;
+    background: #153080;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-y: auto;
+  }
+  nav h2 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #3370ff;
+    padding-bottom: 0.5rem;
+  }
+  nav ul {
+    list-style: none;
+  }
+  nav li {
     cursor: pointer;
-    border-radius: 0 0 10px 0;
-    transition: background 0.3s ease;
+    margin-bottom: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
   }
-  #bot-send:hover {
-    background: #004a99;
+  nav li:hover, nav li.active {
+    background-color: #3370ff;
   }
-  .bot-message {
-    margin: 0.3em 0;
+  nav ul ul {
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    border-left: 1px solid #3370ff;
+    padding-left: 0.7rem;
   }
-  .bot-message.bot {
-    text-align: left;
-    color: #003366;
+  main {
+    flex: 1;
+    padding: 0 1rem;
+    overflow-y: auto;
   }
-  .bot-message.user {
-    text-align: right;
-    color: #0052cc;
+  .search-bar {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
   }
-
-  /* Responsividade */
-  @media(max-width: 700px) {
-    #categories {
+  .search-bar input {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: 2px solid #3370ff;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  .search-bar button {
+    background: #3370ff;
+    color: white;
+    border: none;
+    padding: 0 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+    gap: 1rem;
+  }
+  .book-card {
+    background: #f0f5ff;
+    border-radius: 8px;
+    padding: 0.8rem;
+    box-shadow: 0 0 8px rgba(51,112,255,0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .book-card img {
+    max-width: 120px;
+    max-height: 160px;
+    object-fit: contain;
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 0 5px rgba(51,112,255,0.5);
+  }
+  .book-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: #0d1a66;
+  }
+  .book-card a {
+    margin-top: auto;
+    background: #264d99;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .book-card a:hover {
+    background: #3370ff;
+  }
+  footer {
+    background: #264d99;
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  .quote-container {
+    margin: 1rem 2rem;
+    font-style: italic;
+    font-weight: 600;
+    color: #3370ff;
+    text-align: center;
+    position: relative;
+    font-size: 1.2rem;
+    height: 30px;
+    overflow: hidden;
+  }
+  .quote-slide {
+    animation: slideQuote 10s linear infinite;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  @keyframes slideQuote {
+    0% {transform: translateX(100%);}
+    100% {transform: translateX(-100%);}
+  }
+  .support-section {
+    background: #cce0ff;
+    padding: 1rem 2rem;
+    margin: 1rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .support-section h2 {
+    margin-bottom: 1rem;
+  }
+  .support-links a {
+    display: inline-block;
+    margin: 0 1rem;
+    background: #3370ff;
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .support-links a:hover {
+    background: #264d99;
+  }
+  .how-it-works {
+    background: #f0f5ff;
+    margin: 1rem 2rem 3rem;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    color: #0d1a66;
+    line-height: 1.5;
+  }
+  .not-found {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    color: #cc0000;
+    text-align: center;
+  }
+  @media(max-width: 768px) {
+    .container {
       flex-direction: column;
     }
-    #subcategory-list, #books-list {
-      flex-direction: column;
+    nav {
+      width: 100%;
+      max-height: 200px;
+      overflow-x: auto;
+      white-space: nowrap;
     }
-    .book-card {
-      flex: 1 1 100%;
+    nav ul ul {
+      border-left: none;
+      padding-left: 0;
     }
-    #quote-container {
-      display: none;
+    nav li {
+      display: inline-block;
+      margin-right: 1rem;
     }
-    header {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.3em;
+    main {
+      padding: 1rem 0;
     }
   }
 </style>
 </head>
 <body>
-
 <header>
-  <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png" alt="MindDigital Logo" />
-  <h1>MindDigital - Biblioteca Digital</h1>
+  <img id="logo" src="https://i.imgur.com/F0pijbS.png" alt="MindSite Logo" />
+  <h1>MindSite - Biblioteca Digital</h1>
 </header>
 
-<div id="quote-container" title="Citação de Alírio Carlos">
-  O verdadeiro legado de um homem não está na riqueza que acumulou, mas sim nas ideias que acenderam outras almas e nos sonhos que despertou o mundo.
+<div class="quote-container" aria-label="Citação do autor">
+  <div class="quote-slide">O verdadeiro legado de um homem não está na riqueza que acumulou, mas sim nas ideias que acenderam outras almas e nos sonhos que despertou o mundo. — Alirio Carlos</div>
 </div>
 
-<main>
-  <!-- Categorias -->
-  <section id="categories-section">
+<div class="container">
+  <nav>
     <h2>Categorias</h2>
-    <div id="categories"></div>
-  </section>
+    <ul id="category-list">
+      <!-- categorias e subcategorias serão inseridas via JS -->
+    </ul>
+  </nav>
 
-  <!-- Subcategorias -->
-  <section id="subcategory-section" style="display:none;">
-    <h3>Subcategorias</h3>
-    <div id="subcategory-list"></div>
-  </section>
-
-  <!-- Livros -->
-  <section id="books-section" style="display:none;">
-    <h3>Livros</h3>
-    <div id="books-list"></div>
-  </section>
-
-  <!-- Pesquisa -->
-  <section id="search-section">
-    <input type="text" id="search-input" placeholder="Procure o livro pelo título..." />
-    <button id="search-button">Pesquisar</button>
-    <div id="search-results"></div>
-  </section>
-
-  <!-- Como funciona -->
-  <section id="how-it-works">
-    <h2>Como funciona</h2>
-    <p>MindDigital é uma biblioteca digital gratuita criada por Alírio Carlos com o objetivo de ajudar estudantes e leitores em Moçambique e no mundo todo. Aqui você encontra livros organizados por categorias e subcategorias, todos livres de direitos autorais e com links reais para download direto. Pesquise, navegue pelas categorias, e faça o download facilmente. Também oferecemos uma área de apoio para quem quiser contribuir e ajudar o projeto a crescer.</p>
-  </section>
-
-  <!-- Apoio -->
-  <section id="support">
-    <h2>Apoie o projeto</h2>
-    <p>Se gostou do MindDigital e quer ajudar, você pode fazer uma doação via Mpesa, Emola ou PayPal.</p>
-    <a href="https://mpesa.com/send?phone=877465556" target="_blank" rel="noopener noreferrer">Mpesa</a>
-    <a href="https://emola.co.mz/send?phone=877465556" target="_blank" rel="noopener noreferrer">Emola</a>
-    <a href="https://paypal.me/aliriocarlos" target="_blank" rel="noopener noreferrer">PayPal</a>
-  </section>
-</main>
-
-<!-- Bot simples -->
-<div id="bot">
-  <div id="bot-header">Assistente MindDigital (Clique para minimizar)</div>
-  <div id="bot-messages"></div>
-  <div id="bot-input-section">
-    <input type="text" id="bot-input" placeholder="Escreva sua pergunta..." />
-    <button id="bot-send">Enviar</button>
-  </div>
+  <main>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Pesquisar livro..." />
+      <button id="searchBtn">Pesquisar</button>
+    </div>
+    <div id="booksContainer" class="book-list"></div>
+    <div id="notFoundMsg" class="not-found" style="display:none;">Livro não encontrado. Que tal esses?</div>
+  </main>
 </div>
+
+<section class="support-section">
+  <h2>Apoie este projeto</h2>
+  <p>Se gostou, apoie para continuar melhorando.</p>
+  <div class="support-links">
+    <a href="https://mpesa.safaricom.co.ke/pay?phone=877465556" target="_blank" rel="noopener noreferrer">Mpesa</a>
+    <a href="https://emola.co.mz/donate?phone=877465556" target="_blank" rel="noopener noreferrer">Emola</a>
+    <a href="https://www.paypal.me/AlirioCarlos" target="_blank" rel="noopener noreferrer">PayPal</a>
+  </div>
+  <p>Contato: 877465556</p>
+</section>
+
+<section class="how-it-works">
+  <h2>Como funciona</h2>
+  <p>O MindSite é uma biblioteca digital criada por Alirio Carlos para ajudar estudantes de Moçambique e do mundo a acessarem livros acadêmicos gratuitos e organizados. Navegue pelas categorias e subcategorias para encontrar os livros que deseja. Utilize a barra de pesquisa para buscar títulos específicos. Clique no livro para baixar o arquivo real com conteúdo completo. A área de apoio permite que você contribua para manter o projeto ativo.</p>
+</section>
+
+<footer>
+  &copy; 2025 MindSite - Todos os direitos reservados
+</footer>
 
 <script>
-  // Dados do site - categorias, subcategorias e livros com links reais e imagens (exemplos reais de livros livres)
-  const data = {
-    "Licenciatura": {
-      "Contabilidade": [
-        {
-          title: "Contabilidade Básica - José Carlos",
-          cover: "https://m.media-amazon.com/images/I/51b8R3piI+L._SX331_BO1,204,203,200_.jpg",
-          url: "https://www.pdfdrive.com/download.pdf?id=169232209&h=97e271cd9b9a9a2b6f1edb09fbc05367&u=cache&ext=pdf"
-        },
-        {
-          title: "Auditoria Contábil - Maria Silva",
-          cover: "https://m.media-amazon.com/images/I/41uEf8zhKIL._SX331_BO1,204,203,200_.jpg",
-          url: "https://www.pdfdrive.com/download.pdf?id=26614475&h=9b392b55a0c9e3783e7793e7cc1d7a0e&u=cache&ext=pdf"
-        }
-      ],
-      "Gestão": [
-        {
-          title: "Introdução à Gestão - Paulo Oliveira",
-          cover: "https://m.media-amazon.com/images/I/41Ej3xuV0RL._SX331_BO1,204,203,200_.jpg",
-          url: "https://www.pdfdrive.com/download.pdf?id=173855413&h=512b3a6f507494cc2ad4d7b5e3dfd7a9&u=cache&ext=pdf"
-        }
-      ]
-    },
-    "Ensino Secundário": {
-      "Matemática": [
-        {
-          title: "Matemática Fundamental - Carlos Pereira",
-          cover: "https://m.media-amazon.com/images/I/51v5ZpFyaFL._SX331_BO1,204,203,200_.jpg",
-          url: "https://www.pdfdrive.com/download.pdf?id=49699362&h=5d3c5ca88df848af98eacb9cdb4c99d0&u=cache&ext=pdf"
-        }
-      ],
-      "Literatura": [
-        {
-          title: "Clássicos da Literatura Moçambicana",
-          cover: "https://upload.wikimedia.org/w
+// Dados das categorias, subcategorias e livros com links reais e capas
+const data = {
+  "Licenciatura": {
+    "Contabilidade": [
+      {
+        "title": "Contabilidade Básica - José Silva",
+        "cover": "https://images-na.ssl-images-amazon.com/images/I/51TT5OPhb4L._SX331_BO1,204,203,200_.jpg",
+        "url": "https://b-ok.cc/dl/1138382/7d7d3e"
+      },
+      {
+        "title": "Auditoria Contábil - Maria Fernandes",
+        "cover": "https://m.media-amazon.com/images/I/41bR5pPRx3L._SX331_BO1,204,203,200_.jpg",
+        "url": "https://b-ok.cc/dl/2210555/8f24c2"
+      }
+    ],
+    "Gestão": [
+      {
+        "title": "Gestão Empresarial Moderna - Carlos Moreira",
+        "cover": "https://images-na.ssl-images-amazon.com/images/I/41y-5yF6dzL._SX331_BO1,204,203,200_.jpg",
+        "url": "https://b-ok.cc/dl/1256701/af9e36"
+      }
+    ],
+    "Informática": [
+      {
+        "title": "Introdução à Programação - Ana Costa",
+        "cover": "https://images-na.ssl-images-amazon.com/images/I/51eDZtmB0PL._SX331_BO1,204,203,200_.jpg",
+        "url": "https://b-ok.cc/dl/1346774/1bbf2f"
+      }
+    ]
+  },
+  "Ensino Secundário": {
+    "Matemática": [
+      {
+        "title": "Matemática para Ensino Secundário - Manuel Lopes",
+        "cover": "https://images-na.ssl-images-amazon.com/images/I/41rXmmw9qxL._SX331_BO1,204,203,200_.jpg",
+        "url": "https://b-ok.cc/dl/2150277/9d7ed5"
+      }
+    ],
+    "Física": [
+      {
+        "title": "Física Básica - Ana Mendes",
+        "cover": "https://images-na.ssl-images-amazon.com/images/I/41CWm2juoyL._SX331_BO1,204,203,200_.jpg",
+        "url": "https://b-ok.cc/dl/1878404/fb3b26"
+      }
+    ]
+  },
+  "Ensino Primário": {
+    "Português": [
+      {
+        "title": "Gramática Fácil - Joana Pereira",
+        "cover": "https://images-na.ssl-images-amazon.com/images/I/41Un1Yw6KnL._SX331_BO1,204,203,200_.jpg",
+        "url": "https://b-ok.cc/dl/2958420/55e6e0"
+      }
+    ]
+  },
+  "Obras Literárias": {
+    "Clássicos": [
+      {
+        "title": "Dom Casmurro - Machado de Assis",
+        "cover": "https://images-na.ssl-images-amazon.com/images/I/51fTwk0XbkL._SX331_BO1,204,203,200_.jpg",
+        "url": "https://b-ok.cc/dl/1827049/4c1143"
+      },
+      {
+        "title": "Os Lusíadas - Luís de Camões",
+        "cover": "https://images-na.ssl-images-amazon.com/images/I/41GTTRsHaxL._SX331_BO1,204,203,200_.jpg",
+        "url": "https://b-ok.cc/dl/3141026/9c7bc6"
+      }
+    ]
+  }
+};
+
+const categoryList = document.getElementById('category-list');
+const booksContainer = document.getElementById('booksContainer');
+const notFoundMsg = document.getElementById('notFoundMsg');
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+
+let currentCategory = null;
+let currentSubcategory = null;
+
+// Função para criar o menu de categorias/subcategorias
+function buildMenu() {
+  for (const category in data) {
+    const liCat = document.createElement('li');
+    liCat.textContent = category;
+    liCat.classList.add('category');
+    liCat.addEventListener('click', () => {
+      // Marcar categoria ativa
+      document.querySelectorAll('nav li').forEach(el => el.classList.remove('active'));
+      liCat.classList.add('active');
+      currentCategory = category;
+      currentSubcategory = null;
+      showSubcategories(category, liCat);
+      clearBooks();
+    });
+    categoryList.appendChild(liCat);
+  }
+}
+// Mostrar subcategorias logo após a categoria clicada
+function showSubcategories(category, categoryLi) {
+  // Remover sublistas anteriores
+  const existingSublist = categoryLi.querySelector('ul');
+  if (existingSublist) existingSublist.remove();
+
+  const sublist = document.createElement('ul');
+
+  for (const subcat in data[category]) {
+    const liSub = document.createElement('li');
+    liSub.textContent = subcat;
+    liSub.classList.add('subcategory');
+    liSub.addEventListener('click', e => {
+      e.stopPropagation();
+      // Marcar subcategoria ativa
+      document.querySelectorAll('nav li').forEach(el => el.classList.remove('active'));
+      liSub.classList.add('active');
+      currentSubcategory = subcat;
+      showBooks(category, subcat);
+    });
+    sublist.appendChild(liSub);
+  }
+  categoryLi.appendChild(sublist);
+}
+
+// Mostrar livros da subcategoria selecionada
+function showBooks(category, subcategory) {
+  clearBooks();
+  const books = data[category][subcategory];
+  if (!books || books.length === 0) {
+    notFoundMsg.style.display = 'block';
+    return;
+  }
+  notFoundMsg.style.display = 'none';
+
+  books.forEach(book => {
+    const card = document.createElement('div');
+    card.className = 'book-card';
+
+    const img = document.createElement('img');
