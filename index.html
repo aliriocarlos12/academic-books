@@ -1,182 +1,184 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!DOCTYPE html><html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MindDigital - Biblioteca Online</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindDigital - Biblioteca Educativa</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4faff;
-      color: #333;
       margin: 0;
-      padding: 0;
+      background-color: #f0f4f8;
+      color: #333;
     }
     header {
-      background-color: #0077cc;
+      background-color: #1e3a8a;
       color: white;
       padding: 20px;
       text-align: center;
-      position: relative;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-    }
-    .citation {
+    .quote {
       font-style: italic;
       margin-top: 10px;
-      animation: scroll 20s linear infinite;
-      white-space: nowrap;
-      overflow: hidden;
+      font-size: 1rem;
     }
-    @keyframes scroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
     }
     nav {
-      background-color: #005fa3;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      background-color: #3b82f6;
       padding: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
     }
     nav a {
       color: white;
+      margin: 0 10px;
       text-decoration: none;
-      padding: 8px 15px;
-      margin: 5px;
-      background-color: #0077cc;
+      padding: 5px 10px;
+      background-color: #2563eb;
       border-radius: 5px;
     }
     .container {
       padding: 20px;
     }
     .category {
-      margin-top: 30px;
+      margin-bottom: 30px;
     }
     .category h2 {
-      color: #005fa3;
+      background-color: #60a5fa;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
     }
     .book {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
       margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .book img {
+      height: 100px;
+      margin-right: 15px;
     }
     .book a {
       text-decoration: none;
-      color: #0077cc;
+      color: #1e3a8a;
+      font-weight: bold;
     }
     footer {
-      background: #eee;
+      background-color: #1e3a8a;
+      color: white;
       text-align: center;
       padding: 15px;
       margin-top: 40px;
     }
-    .search-bar {
+    .support a {
+      color: #10b981;
+      text-decoration: underline;
+    }
+    .search-box {
       text-align: center;
       margin: 20px 0;
     }
-    .search-bar input[type=\"text\"] {
+    input[type="text"] {
+      padding: 8px;
       width: 60%;
-      padding: 10px;
-      font-size: 1em;
+      max-width: 400px;
     }
-    .search-bar button {
-      padding: 10px 20px;
-      font-size: 1em;
-      background-color: #0077cc;
+    button {
+      padding: 8px 12px;
+      background-color: #2563eb;
       color: white;
       border: none;
-      cursor: pointer;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>MindDigital - Biblioteca Online</h1>
-    <div class=\"citation\">\"O verdadeiro legado de um homem não está na riqueza que acumulou, mas sim nas ideias que acenderam outras almas e nos sonhos que despertou o mundo.\" - Alirio Carlos</div>
-  </header>
-  <nav>
-    <a href=\"#licenciatura\">Licenciatura</a>
-    <a href=\"#secundario\">Ensino Secundário</a>
-    <a href=\"#primario\">Ensino Primário</a>
-    <a href=\"#literarias\">Obras Literárias</a>
-    <a href=\"#apoio\">Apoio</a>
-    <a href=\"#como-funciona\">Como Funciona</a>
-  </nav>
-  <div class=\"search-bar\">
-    <input type=\"text\" id=\"searchInput\" placeholder=\"Pesquisar livro...\">
-    <button onclick=\"searchBook()\">Pesquisar</button>
-  </div>
-  <div class=\"container\">
-    <div id=\"licenciatura\" class=\"category\">
-      <h2>Categoria: Licenciatura - Contabilidade e Auditoria</h2>
-      <div class=\"book\">
-        <a href=\"https://biblioteca.unisced.edu.mz/bitstream/123456789/1704/1/MANUAL%20DE%20CONTABILIDADE%20FINANCEIRA-I.pdf\" target=\"_blank\">Manual de Contabilidade Financeira I</a>
+    <div class="logo">MindDigital</div>
+    <div class="quote">"O verdadeiro legado de um homem não está na riqueza que acumulou, mas sim nas ideias que acenderam outras almas e nos sonhos que despertou o mundo" - Alirio Carlos</div>
+  </header>  <nav>
+    <a href="#licenciatura">Licenciatura</a>
+    <a href="#secundario">Ensino Secundário</a>
+    <a href="#primario">Ensino Primário</a>
+    <a href="#literarias">Obras Literárias</a>
+    <a href="#apoio">Apoio</a>
+  </nav>  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Pesquisar livros...">
+    <button onclick="searchBooks()">Pesquisar</button>
+  </div>  <div class="container">
+    <section id="licenciatura" class="category">
+      <h2>Licenciatura - Contabilidade</h2>
+      <div class="book">
+        <img src="https://covers.openlibrary.org/b/id/6543276-L.jpg" alt="Livro de Auditoria">
+        <div>
+          <a href="https://archive.org/download/AuditingAndAssuranceServices/Auditing%20and%20Assurance%20Services.pdf" target="_blank">Auditing and Assurance Services</a>
+        </div>
       </div>
-      <div class=\"book\">
-        <a href=\"https://pt.scribd.com/document/551514400/Normas-de-Contabilidade-e-Auditoria-Fiscal\" target=\"_blank\">Normas de Contabilidade e Auditoria Fiscal</a>
+      <div class="book">
+        <img src="https://covers.openlibrary.org/b/id/8275261-L.jpg" alt="Contabilidade Intermediária">
+        <div>
+          <a href="https://archive.org/download/IntermediateAccounting/Intermediate_Accounting.pdf" target="_blank">Intermediate Accounting</a>
+        </div>
       </div>
-      <div class=\"book\">
-        <a href=\"https://www.ismonitor.ac.mz/media/1145/contabilidade-e-auditoria_novo.pdf\" target=\"_blank\">Contabilidade e Auditoria - ISM</a>
-      </div>
-    </div>
-    <div id=\"secundario\" class=\"category\">
-      <h2>Categoria: Ensino Secundário</h2>
-      <div class=\"book\">
-        <a href=\"https://pt.scribd.com/document/703101062/Livros-Aprovados-Pelo-MINEDH-Primario-e-Secundario\" target=\"_blank\">Lista de Livros Aprovados pelo MINEDH</a>
-      </div>
-      <div class=\"book\">
-        <a href=\"https://pt.scribd.com/document/851907325/Todos-Livros-da-12%C2%AA-Classe-Em-PDF\" target=\"_blank\">Todos Livros da 12ª Classe</a>
-      </div>
-    </div>
-    <div id=\"primario\" class=\"category\">
-      <h2>Categoria: Ensino Primário</h2>
-      <div class=\"book\">
-        <a href=\"https://pt.scribd.com/document/703101062/Livros-Aprovados-Pelo-MINEDH-Primario-e-Secundario\" target=\"_blank\">Lista de Livros Aprovados pelo MINEDH</a>
-      </div>
-    </div>
-    <div id=\"literarias\" class=\"category\">
-      <h2>Categoria: Obras Literárias</h2>
-      <div class=\"book\">
-        <a href=\"https://www.gutenberg.org/ebooks/7078\" target=\"_blank\">Os Lusíadas - Luís de Camões</a>
-      </div>
-    </div>
-    <div id=\"apoio\" class=\"category\">
-      <h2>Apoio ao Projeto</h2>
-      <p>Você pode apoiar este projeto através dos seguintes métodos:</p>
-      <ul>
-        <li><a href=\"https://mpesa.co.mz/portalcliente/#/transacoes/pagamentos\" target=\"_blank\">Mpesa</a></li>
-        <li><a href=\"https://emola.co.mz/\" target=\"_blank\">Emola</a></li>
-        <li><a href=\"https://www.paypal.com/donate/?hosted_button_id=YOUR_BUTTON_ID\" target=\"_blank\">PayPal</a></li>
-      </ul>
-    </div>
-    <div id=\"como-funciona\" class=\"category\">
-      <h2>Como Funciona</h2>
-      <p>Este site foi criado por Alirio Carlos com o objetivo de fornecer acesso gratuito a livros educativos para estudantes e profissionais em Moçambique. Basta navegar pelas categorias e clicar no título do livro desejado para fazer o download direto.</p>
+    </section><section id="secundario" class="category">
+  <h2>Ensino Secundário</h2>
+  <div class="book">
+    <img src="https://covers.openlibrary.org/b/id/8228691-L.jpg" alt="Matemática 12ª Classe">
+    <div>
+      <a href="https://ia802900.us.archive.org/2/items/matematica-12a-classe/MATEM%C3%81TICA%2012a%20CLASSE.pdf" target="_blank">Matemática 12ª Classe</a>
     </div>
   </div>
-  <footer>
-    <p>&copy; 2025 MindDigital. Todos os direitos reservados.</p>
-  </footer>
-  <script>
-    function searchBook() {
-      var input = document.getElementById(\"searchInput\").value.toLowerCase();
-      var books = document.getElementsByClassName(\"book\");
-      var found = false;
-      for (var i = 0; i < books.length; i++) {
-        var book = books[i];
-        var title = book.textContent.toLowerCase();
-        if (title.includes(input)) {
-          book.style.display = \"block\";
+</section>
+
+<section id="literarias" class="category">
+  <h2>Obras Literárias</h2>
+  <div class="book">
+    <img src="https://covers.openlibrary.org/b/id/8225262-L.jpg" alt="Os Lusíadas">
+    <div>
+      <a href="https://www.gutenberg.org/ebooks/29881" target="_blank">Os Lusíadas - Luís de Camões</a>
+    </div>
+  </div>
+</section>
+
+<section id="apoio" class="category">
+  <h2>Deseja apoiar o projeto?</h2>
+  <p class="support">Contribua via:</p>
+  <ul>
+    <li><a href="https://mpesa.vodacom.co.mz/pagar/877465556" target="_blank">Mpesa</a></li>
+    <li><a href="https://emola.fsdm.co.mz/enviar/877465556" target="_blank">Emola</a></li>
+    <li><a href="https://paypal.me/877465556" target="_blank">PayPal</a></li>
+  </ul>
+</section>
+
+<section id="funcionamento" class="category">
+  <h2>Como funciona o site?</h2>
+  <p>O MindDigital é uma biblioteca digital educativa criada por Alirio Carlos. Seu objetivo é ajudar estudantes e leitores a encontrarem livros por áreas de formação, níveis escolares e temas literários. Todos os livros são de domínio público, organizados por categorias, com links diretos para download e imagens das capas para facilitar a identificação.</p>
+</section>
+
+  </div>  <footer>
+    &copy; 2025 MindDigital - Criado por Alirio Carlos
+  </footer>  <script>
+    function searchBooks() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const books = document.querySelectorAll(".book");
+      let found = false;
+      books.forEach(book => {
+        const text = book.innerText.toLowerCase();
+        if (text.includes(input)) {
+          book.style.display = "flex";
           found = true;
         } else {
-          book.style.display = \"none\";
+          book.style.display = "none";
         }
-      }
-      if (!found) {
-        alert(\"Livro não encontrado. Por favor, tente outro título ou verifique a ortografia.\");
-      }
+      });
+      if (!found) alert("Livro não encontrado. Veja abaixo sugestões relacionadas.");
     }
-  </script>
-</body>
+  </script></body>
 </html>
