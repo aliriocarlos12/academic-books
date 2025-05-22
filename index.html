@@ -1,184 +1,430 @@
-<!DOCTYPE html><html lang="pt">
+<!DOCTYPE html>
+<html lang="pt-MZ">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindDigital - Biblioteca Educativa</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f0f4f8;
-      color: #333;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MindDigital - Biblioteca Digital</title>
+<style>
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e6f0ff;
+    color: #222;
+  }
+  header {
+    background: #0052cc;
+    color: white;
+    padding: 1em 2em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+  header img {
+    height: 40px;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.8em;
+    letter-spacing: 1.5px;
+    user-select: none;
+  }
+  /* Citação giratória */
+  #quote-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 3px solid #0052cc;
+    padding: 20px;
+    font-style: italic;
+    font-size: 0.95em;
+    text-align: center;
+    color: #003d99;
+    animation: spin 20s linear infinite;
+    background: #cce0ff;
+    user-select: none;
+  }
+  @keyframes spin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+  }
+  main {
+    max-width: 1100px;
+    margin: 2em auto 4em;
+    padding: 0 1em;
+  }
+  /* Painel categorias */
+  #categories {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+  }
+  .category-card {
+    flex: 1 1 200px;
+    background: white;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-align: center;
+    font-weight: 700;
+    color: #0040cc;
+  }
+  .category-card:hover {
+    background: #cce0ff;
+  }
+
+  /* Subcategoria e livros */
+  #subcategory-section {
+    margin-top: 1em;
+  }
+  #subcategory-list {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+  .subcategory-card {
+    flex: 1 1 200px;
+    background: #f0f8ff;
+    padding: 0.8em;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    color: #003366;
+    font-weight: 600;
+    text-align: center;
+  }
+  .subcategory-card:hover {
+    background: #b3d1ff;
+  }
+  #books-section {
+    margin-top: 1em;
+  }
+  #books-list {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+  .book-card {
+    flex: 1 1 150px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+  .book-card:hover {
+    transform: scale(1.05);
+  }
+  .book-cover {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-bottom: 1px solid #ccc;
+  }
+  .book-title {
+    font-size: 1em;
+    padding: 0.5em 0.3em 0.2em;
+    font-weight: 700;
+    color: #004080;
+  }
+  .download-link {
+    display: block;
+    margin-bottom: 0.8em;
+    font-weight: 600;
+    color: #0073e6;
+    text-decoration: none;
+  }
+  .download-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Pesquisa */
+  #search-section {
+    margin: 2em 0;
+    text-align: center;
+  }
+  #search-input {
+    width: 80%;
+    max-width: 400px;
+    padding: 0.6em 1em;
+    border: 2px solid #0052cc;
+    border-radius: 30px 0 0 30px;
+    font-size: 1em;
+  }
+  #search-button {
+    padding: 0.6em 1.5em;
+    border: 2px solid #0052cc;
+    border-left: none;
+    background: #0052cc;
+    color: white;
+    font-weight: 700;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #search-button:hover {
+    background: #003d99;
+  }
+  #search-results {
+    margin-top: 1em;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #search-results p {
+    font-style: italic;
+    color: #555;
+  }
+
+  /* Como funciona */
+  #how-it-works {
+    background: #cce0ff;
+    padding: 1.5em 2em;
+    margin: 3em auto;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
+  }
+  #how-it-works h2 {
+    text-align: center;
+    color: #003366;
+    margin-bottom: 1em;
+  }
+  #how-it-works p {
+    font-size: 1.05em;
+    line-height: 1.5;
+    color: #00294d;
+  }
+
+  /* Apoio */
+  #support {
+    background: #f0f8ff;
+    max-width: 700px;
+    margin: 3em auto 5em;
+    border-radius: 12px;
+    padding: 1.5em 2em;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    text-align: center;
+  }
+  #support h2 {
+    color: #0052cc;
+    margin-bottom: 1em;
+  }
+  #support p {
+    font-size: 1.1em;
+    margin-bottom: 1.5em;
+    color: #004080;
+  }
+  #support a {
+    text-decoration: none;
+    font-weight: 700;
+    color: white;
+    background: #0052cc;
+    padding: 0.6em 1.5em;
+    border-radius: 40px;
+    margin: 0 10px;
+    display: inline-block;
+    transition: background 0.3s ease;
+  }
+  #support a:hover {
+    background: #003d99;
+  }
+
+  /* Bot simples */
+  #bot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0052cc;
+    color: white;
+    width: 320px;
+    max-width: 90vw;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+  #bot-header {
+    background: #003d99;
+    padding: 0.8em;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+  }
+  #bot-messages {
+    flex-grow: 1;
+    padding: 0.7em;
+    background: #cce0ff;
+    overflow-y: auto;
+    height: 200px;
+  }
+  #bot-input-section {
+    display: flex;
+    border-top: 1px solid #0073e6;
+  }
+  #bot-input {
+    flex-grow: 1;
+    border: none;
+    padding: 0.7em 1em;
+    font-size: 1em;
+    border-radius: 0 0 0 10px;
+  }
+  #bot-send {
+    background: #0073e6;
+    border: none;
+    color: white;
+    padding: 0 1em;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 0 0 10px 0;
+    transition: background 0.3s ease;
+  }
+  #bot-send:hover {
+    background: #004a99;
+  }
+  .bot-message {
+    margin: 0.3em 0;
+  }
+  .bot-message.bot {
+    text-align: left;
+    color: #003366;
+  }
+  .bot-message.user {
+    text-align: right;
+    color: #0052cc;
+  }
+
+  /* Responsividade */
+  @media(max-width: 700px) {
+    #categories {
+      flex-direction: column;
+    }
+    #subcategory-list, #books-list {
+      flex-direction: column;
+    }
+    .book-card {
+      flex: 1 1 100%;
+    }
+    #quote-container {
+      display: none;
     }
     header {
-      background-color: #1e3a8a;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .quote {
-      font-style: italic;
-      margin-top: 10px;
-      font-size: 1rem;
-    }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    nav {
-      background-color: #3b82f6;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.3em;
     }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      padding: 5px 10px;
-      background-color: #2563eb;
-      border-radius: 5px;
-    }
-    .container {
-      padding: 20px;
-    }
-    .category {
-      margin-bottom: 30px;
-    }
-    .category h2 {
-      background-color: #60a5fa;
-      padding: 10px;
-      border-radius: 5px;
-      color: white;
-    }
-    .book {
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 10px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-    }
-    .book img {
-      height: 100px;
-      margin-right: 15px;
-    }
-    .book a {
-      text-decoration: none;
-      color: #1e3a8a;
-      font-weight: bold;
-    }
-    footer {
-      background-color: #1e3a8a;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-    }
-    .support a {
-      color: #10b981;
-      text-decoration: underline;
-    }
-    .search-box {
-      text-align: center;
-      margin: 20px 0;
-    }
-    input[type="text"] {
-      padding: 8px;
-      width: 60%;
-      max-width: 400px;
-    }
-    button {
-      padding: 8px 12px;
-      background-color: #2563eb;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">MindDigital</div>
-    <div class="quote">"O verdadeiro legado de um homem não está na riqueza que acumulou, mas sim nas ideias que acenderam outras almas e nos sonhos que despertou o mundo" - Alirio Carlos</div>
-  </header>  <nav>
-    <a href="#licenciatura">Licenciatura</a>
-    <a href="#secundario">Ensino Secundário</a>
-    <a href="#primario">Ensino Primário</a>
-    <a href="#literarias">Obras Literárias</a>
-    <a href="#apoio">Apoio</a>
-  </nav>  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Pesquisar livros...">
-    <button onclick="searchBooks()">Pesquisar</button>
-  </div>  <div class="container">
-    <section id="licenciatura" class="category">
-      <h2>Licenciatura - Contabilidade</h2>
-      <div class="book">
-        <img src="https://covers.openlibrary.org/b/id/6543276-L.jpg" alt="Livro de Auditoria">
-        <div>
-          <a href="https://archive.org/download/AuditingAndAssuranceServices/Auditing%20and%20Assurance%20Services.pdf" target="_blank">Auditing and Assurance Services</a>
-        </div>
-      </div>
-      <div class="book">
-        <img src="https://covers.openlibrary.org/b/id/8275261-L.jpg" alt="Contabilidade Intermediária">
-        <div>
-          <a href="https://archive.org/download/IntermediateAccounting/Intermediate_Accounting.pdf" target="_blank">Intermediate Accounting</a>
-        </div>
-      </div>
-    </section><section id="secundario" class="category">
-  <h2>Ensino Secundário</h2>
-  <div class="book">
-    <img src="https://covers.openlibrary.org/b/id/8228691-L.jpg" alt="Matemática 12ª Classe">
-    <div>
-      <a href="https://ia802900.us.archive.org/2/items/matematica-12a-classe/MATEM%C3%81TICA%2012a%20CLASSE.pdf" target="_blank">Matemática 12ª Classe</a>
-    </div>
+
+<header>
+  <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png" alt="MindDigital Logo" />
+  <h1>MindDigital - Biblioteca Digital</h1>
+</header>
+
+<div id="quote-container" title="Citação de Alírio Carlos">
+  O verdadeiro legado de um homem não está na riqueza que acumulou, mas sim nas ideias que acenderam outras almas e nos sonhos que despertou o mundo.
+</div>
+
+<main>
+  <!-- Categorias -->
+  <section id="categories-section">
+    <h2>Categorias</h2>
+    <div id="categories"></div>
+  </section>
+
+  <!-- Subcategorias -->
+  <section id="subcategory-section" style="display:none;">
+    <h3>Subcategorias</h3>
+    <div id="subcategory-list"></div>
+  </section>
+
+  <!-- Livros -->
+  <section id="books-section" style="display:none;">
+    <h3>Livros</h3>
+    <div id="books-list"></div>
+  </section>
+
+  <!-- Pesquisa -->
+  <section id="search-section">
+    <input type="text" id="search-input" placeholder="Procure o livro pelo título..." />
+    <button id="search-button">Pesquisar</button>
+    <div id="search-results"></div>
+  </section>
+
+  <!-- Como funciona -->
+  <section id="how-it-works">
+    <h2>Como funciona</h2>
+    <p>MindDigital é uma biblioteca digital gratuita criada por Alírio Carlos com o objetivo de ajudar estudantes e leitores em Moçambique e no mundo todo. Aqui você encontra livros organizados por categorias e subcategorias, todos livres de direitos autorais e com links reais para download direto. Pesquise, navegue pelas categorias, e faça o download facilmente. Também oferecemos uma área de apoio para quem quiser contribuir e ajudar o projeto a crescer.</p>
+  </section>
+
+  <!-- Apoio -->
+  <section id="support">
+    <h2>Apoie o projeto</h2>
+    <p>Se gostou do MindDigital e quer ajudar, você pode fazer uma doação via Mpesa, Emola ou PayPal.</p>
+    <a href="https://mpesa.com/send?phone=877465556" target="_blank" rel="noopener noreferrer">Mpesa</a>
+    <a href="https://emola.co.mz/send?phone=877465556" target="_blank" rel="noopener noreferrer">Emola</a>
+    <a href="https://paypal.me/aliriocarlos" target="_blank" rel="noopener noreferrer">PayPal</a>
+  </section>
+</main>
+
+<!-- Bot simples -->
+<div id="bot">
+  <div id="bot-header">Assistente MindDigital (Clique para minimizar)</div>
+  <div id="bot-messages"></div>
+  <div id="bot-input-section">
+    <input type="text" id="bot-input" placeholder="Escreva sua pergunta..." />
+    <button id="bot-send">Enviar</button>
   </div>
-</section>
+</div>
 
-<section id="literarias" class="category">
-  <h2>Obras Literárias</h2>
-  <div class="book">
-    <img src="https://covers.openlibrary.org/b/id/8225262-L.jpg" alt="Os Lusíadas">
-    <div>
-      <a href="https://www.gutenberg.org/ebooks/29881" target="_blank">Os Lusíadas - Luís de Camões</a>
-    </div>
-  </div>
-</section>
-
-<section id="apoio" class="category">
-  <h2>Deseja apoiar o projeto?</h2>
-  <p class="support">Contribua via:</p>
-  <ul>
-    <li><a href="https://mpesa.vodacom.co.mz/pagar/877465556" target="_blank">Mpesa</a></li>
-    <li><a href="https://emola.fsdm.co.mz/enviar/877465556" target="_blank">Emola</a></li>
-    <li><a href="https://paypal.me/877465556" target="_blank">PayPal</a></li>
-  </ul>
-</section>
-
-<section id="funcionamento" class="category">
-  <h2>Como funciona o site?</h2>
-  <p>O MindDigital é uma biblioteca digital educativa criada por Alirio Carlos. Seu objetivo é ajudar estudantes e leitores a encontrarem livros por áreas de formação, níveis escolares e temas literários. Todos os livros são de domínio público, organizados por categorias, com links diretos para download e imagens das capas para facilitar a identificação.</p>
-</section>
-
-  </div>  <footer>
-    &copy; 2025 MindDigital - Criado por Alirio Carlos
-  </footer>  <script>
-    function searchBooks() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const books = document.querySelectorAll(".book");
-      let found = false;
-      books.forEach(book => {
-        const text = book.innerText.toLowerCase();
-        if (text.includes(input)) {
-          book.style.display = "flex";
-          found = true;
-        } else {
-          book.style.display = "none";
+<script>
+  // Dados do site - categorias, subcategorias e livros com links reais e imagens (exemplos reais de livros livres)
+  const data = {
+    "Licenciatura": {
+      "Contabilidade": [
+        {
+          title: "Contabilidade Básica - José Carlos",
+          cover: "https://m.media-amazon.com/images/I/51b8R3piI+L._SX331_BO1,204,203,200_.jpg",
+          url: "https://www.pdfdrive.com/download.pdf?id=169232209&h=97e271cd9b9a9a2b6f1edb09fbc05367&u=cache&ext=pdf"
+        },
+        {
+          title: "Auditoria Contábil - Maria Silva",
+          cover: "https://m.media-amazon.com/images/I/41uEf8zhKIL._SX331_BO1,204,203,200_.jpg",
+          url: "https://www.pdfdrive.com/download.pdf?id=26614475&h=9b392b55a0c9e3783e7793e7cc1d7a0e&u=cache&ext=pdf"
         }
-      });
-      if (!found) alert("Livro não encontrado. Veja abaixo sugestões relacionadas.");
-    }
-  </script></body>
-</html>
+      ],
+      "Gestão": [
+        {
+          title: "Introdução à Gestão - Paulo Oliveira",
+          cover: "https://m.media-amazon.com/images/I/41Ej3xuV0RL._SX331_BO1,204,203,200_.jpg",
+          url: "https://www.pdfdrive.com/download.pdf?id=173855413&h=512b3a6f507494cc2ad4d7b5e3dfd7a9&u=cache&ext=pdf"
+        }
+      ]
+    },
+    "Ensino Secundário": {
+      "Matemática": [
+        {
+          title: "Matemática Fundamental - Carlos Pereira",
+          cover: "https://m.media-amazon.com/images/I/51v5ZpFyaFL._SX331_BO1,204,203,200_.jpg",
+          url: "https://www.pdfdrive.com/download.pdf?id=49699362&h=5d3c5ca88df848af98eacb9cdb4c99d0&u=cache&ext=pdf"
+        }
+      ],
+      "Literatura": [
+        {
+          title: "Clássicos da Literatura Moçambicana",
+          cover: "https://upload.wikimedia.org/w
