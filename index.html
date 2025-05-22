@@ -2,165 +2,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindDigital - Biblioteca Educativa</title>
+  <title>MindDigital - Biblioteca Acadêmica</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
       margin: 0;
-      background-color: #f0f8ff;
+      padding: 0;
       color: #333;
     }
     header {
-      background-color: #005f99;
+      background-color: #0057a3;
       color: white;
       padding: 20px;
       text-align: center;
-      position: relative;
-    }
-    header img {
-      height: 50px;
-      vertical-align: middle;
     }
     header h1 {
-      display: inline;
-      margin-left: 10px;
-      font-size: 2em;
-      animation: glow 2s ease-in-out infinite alternate;
+      margin: 0;
+      font-size: 2.5em;
     }
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #fff; }
-      to { text-shadow: 0 0 20px #00bfff; }
-    }
-    .quote {
-      text-align: center;
-      font-style: italic;
-      color: #005f99;
-      animation: float 20s linear infinite;
+    header p.citacao {
       font-size: 1em;
-      margin: 10px;
+      font-style: italic;
+      margin-top: 10px;
+      animation: girar 15s linear infinite;
     }
-    @keyframes float {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
+    @keyframes girar {
+      0% { transform: rotateY(0); }
+      100% { transform: rotateY(360deg); }
     }
-    .container {
+    nav {
+      background-color: #004080;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 5px 15px;
+      font-weight: bold;
+    }
+    main {
       padding: 20px;
     }
-    .category {
-      margin-bottom: 30px;
+    section {
+      margin-bottom: 40px;
     }
-    .category h2 {
-      color: #005f99;
-      border-bottom: 2px solid #00bfff;
-      padding-bottom: 5px;
+    .categoria {
+      background-color: #e1ecf4;
+      padding: 15px;
+      border-radius: 8px;
     }
-    .subcategory {
-      margin-left: 20px;
-    }
-    .book {
+    .livro {
       margin: 5px 0;
     }
-    .book a {
+    .livro a {
       text-decoration: none;
-      color: #333;
+      color: #0057a3;
     }
-    .book a:hover {
-      color: #005f99;
-    }
-    .search-section {
-      text-align: center;
+    .apoio, .como-funciona, .autor {
+      background-color: #dbe9f4;
       padding: 20px;
-    }
-    .search-section input {
-      padding: 10px;
-      width: 60%;
-      border: 1px solid #005f99;
-      border-radius: 5px;
-    }
-    .search-section button {
-      padding: 10px 20px;
-      background-color: #005f99;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-    .support {
-      background-color: #e6f2ff;
-      padding: 20px;
-      margin-top: 30px;
-      text-align: center;
-    }
-    .support h3 {
-      color: #005f99;
-    }
-    .support button {
-      margin: 5px;
-      padding: 10px;
-      background-color: #00bfff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      border-radius: 8px;
     }
     footer {
-      background-color: #005f99;
-      color: white;
-      padding: 10px;
       text-align: center;
+      padding: 15px;
+      background-color: #004080;
+      color: white;
+    }
+    .search {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .search input {
+      padding: 10px;
+      width: 300px;
+    }
+    .search button {
+      padding: 10px 20px;
+      background-color: #0057a3;
+      color: white;
+      border: none;
+      cursor: pointer;
     }
   </style>
-  <script>
-    function searchBook() {
-      const term = document.getElementById('searchInput').value.toLowerCase();
-      const books = document.querySelectorAll('.book');
-      let found = false;books.forEach(book => {
-    if (book.textContent.toLowerCase().includes(term)) {
-      book.style.display = 'block';
-      found = true;
-    } else {
-      book.style.display = 'none';
-    }
-  });
-
-  if (!found) {
-    alert("Livro não encontrado. Experimente procurar algo relacionado.");
-  }
-}
-
-function support(option) {
-  let number = '877465556';
-  if (option === 'Mpesa') {
-    window.open('https://mpesa.vodacom.co.mz/doar?tel=' + number);
-  } else if (option === 'Emola') {
-    window.open('https://emola.vm.co.mz/doar?tel=' + number);
-  } else if (option === 'Paypal') {
-    window.open('https://paypal.me/aliriocarlos');
-  }
-}
-
-  </script>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Logo MindDigital">
-    <h1>MindDigital</h1>
-    <div class="quote">“O verdadeiro legado de um homem não está na riqueza que acumulou, mas sim nas ideias que acenderam outras almas e nos sonhos que despertou o mundo.”</div>
-  </header>  <div class="search-section">
-    <input type="text" id="searchInput" placeholder="Pesquisar livros...">
-    <button onclick="searchBook()">Pesquisar</button>
-  </div>  <div class="container">
-    <!-- As categorias e livros serão inseridos aqui na próxima etapa -->
-  </div>  <div class="support">
-    <h3>Apoie este projeto educacional</h3>
-    <p>Número: <strong>877465556</strong></p>
-    <button onclick="support('Mpesa')">Doar via Mpesa</button>
-    <button onclick="support('Emola')">Doar via Emola</button>
-    <button onclick="support('Paypal')">Doar via PayPal</button>
-  </div>  <footer>
-    <p>Este aplicativo foi criado por Alirio Carlos com o objetivo de facilitar o acesso ao conhecimento para estudantes e autodidatas em Moçambique e no mundo.</p>
-    <p>O MindDigital permite acesso gratuito a livros acadêmicos, técnicos e literários, organizados por categorias e com links reais para download.</p>
-  </footer>
-</body>
-  </html>
+    <img src="logo.png" alt="MindDigital Logo" style="width:80px;height:auto;">
+    <h1>MindDigital - Biblioteca Acadêmica</h1>
+    <p class="citacao">"O verdadeiro legado de um homem não está na riqueza que acumulou, mas sim nas ideias que acenderam outras almas e nos sonhos que despertou o mundo"</p>
+  </header>  <nav>
+    <a href="#licenciatura">Licenciatura</a>
+    <a href="#secundario">Ensino Secundário</a>
+    <a href="#primario">Ensino Primário</a>
+    <a href="#literarias">Obras Literárias</a>
+    <a href="#estrangeiros">Livros Internacionais</a>
+    <a href="#apoio">Apoio</a>
+    <a href="#como">Como Funciona</a>
+  </nav>  <div class="search">
+    <input type="text" id="busca" placeholder="Pesquisar livro...">
+    <button onclick="pesquisarLivro()">Pesquisar</button>
+    <div id="resultadoBusca"></div>
+  </div>  <main>
+    <section id="licenciatura" class="categoria">
+      <h2>Licenciatura</h2>
+      <h3>Contabilidade</h3>
+      <div class="livro"><a href="https://example.com/livros/contabilidade1.pdf" target="_blank">Auditoria Moderna</a></div>
+      <div class="livro"><a href="https://example.com/livros/contabilidade2.pdf" target="_blank">Práticas Contábeis para Moçambique</a></div>
+      <h3>Gestão</h3>
+      <div class="livro"><a href="https://example.com/livros/gestao1.pdf" target="_blank">Fundamentos de Gestão</a></div>
+      <h3>Informática</h3>
+      <div class="livro"><a href="https://example.com/livros/informatica1.pdf" target="_blank">Introdução à Programação</a></div>
+    </section><section id="secundario" class="categoria">
+  <h2>Ensino Secundário</h2>
+  <div class="livro"><a href="https://example.com/livros/matematica_secundario.pdf" target="_blank">Matemática 12ª Classe</a></div>
+  <div class="livro"><a href="https://example.com/livros/portugues_secundario.pdf" target="_blank">Português 11ª Classe</a></div>
+</section>
+
+<section id="primario" class="categoria">
+  <h2>Ensino Primário</h2>
+  <div class="livro"><a href="https://example.com/livros/leitura_primario.pdf" target="_blank">Livro de Leitura 4ª Classe</a></div>
+</section>
+
+<section id="literarias" class="categoria">
+  <h2>Obras Literárias</h2>
+  <div class="livro"><a href="https://www.dominiopublico.gov.br/download/texto/bv000038.pdf" target="_blank">Dom Casmurro</a></div>
+</section>
+
+<section id="estrangeiros" class="categoria">
+  <h2>Livros Internacionais</h2>
+  <div class="livro"><a href="https://www.gutenberg.org/ebooks/84" target="_blank">Frankenstein (Inglês)</a></div>
+</section>
+
+<section id="apoio" class="apoio">
+  <h2>Deseja apoiar este projeto?</h2>
+  <p>Use uma das opções abaixo para enviar qualquer valor para apoiar este projeto:</p>
+  <p><strong>Mpesa / Emola / PayPal:</strong> <a href="tel:+258877465556">877465556</a></p>
+</section>
+
+<section id="como" class="como-funciona">
+  <h2>Como o site funciona?</h2>
+  <p>O MindDigital é uma biblioteca digital organizada por categorias como licenciatura, ensino secundário e primário, oferecendo livros gratuitos para download. Basta clicar na categoria desejada e escolher o livro para baixar. O objetivo é facilitar o acesso à educação.</p>
+</section>
+
+<section class="autor">
+  <h2>Sobre o Criador</h2>
+  <p>Este site foi criado por <strong>Alirio Carlos</strong> com o objetivo de ajudar estudantes moçambicanos e de todo o mundo a terem acesso fácil a livros de qualidade sem custos.</p>
+</section>
+
+  </main>  <footer>
+    <p>&copy; 2025 MindDigital - Todos os direitos reservados</p>
+  </footer>  <script>
+    const livros = [
+      "Auditoria Moderna",
+      "Práticas Contábeis para Moçambique",
+      "Fundamentos de Gestão",
+      "Introdução à Programação",
+      "Matemática 12ª Classe",
+      "Português 11ª Classe",
+      "Livro de Leitura 4ª Classe",
+      "Dom Casmurro",
+      "Frankenstein (Inglês)"
+    ];
+
+    function pesquisarLivro() {
+      const busca = document.getElementById('busca').value.toLowerCase();
+      const resultado = document.getElementById('resultadoBusca');
+      resultado.innerHTML = '';
+      const encontrados = livros.filter(t => t.toLowerCase().includes(busca));
+      if (encontrados.length > 0) {
+        encontrados.forEach(livro => resultado.innerHTML += `<p>${livro}</p>`);
+      } else {
+        resultado.innerHTML = '<p>Livro não encontrado. Veja sugestões:</p><ul>';
+        livros.slice(0, 3).forEach(s => resultado.innerHTML += `<li>${s}</li>`);
+        resultado.innerHTML += '</ul>';
+      }
+    }
+  </script></body>
+</html>
